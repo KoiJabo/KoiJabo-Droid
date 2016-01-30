@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.example.zervis.koijabo.AddReviewActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp">
+
+            <TextView
+                android:id="@+id/add_review_page_title"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="36dp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:text="Gloria Jeans"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/food_seekBar_title"
+                style="@style/AddReviewSeekbarHeading"
+                android:layout_below="@+id/add_review_page_title"
+                android:text="Food" />
+
+            <TextView
+                android:id="@+id/food_seekBar_value"
+                style="@style/AddReviewSeekbarHeading"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/add_review_page_title"
+                android:text="" />
+
+            <SeekBar
+                android:id="@+id/food_seekBar"
+                style="@style/AddReviewSeekbar"
+                android:max="5"
+                android:progress="0"
+                android:layout_below="@id/food_seekBar_title" />
+
+            <TextView
+                android:id="@+id/service_seekBar_title"
+                style="@style/AddReviewSeekbarHeading"
+                android:layout_below="@+id/food_seekBar"
+                android:text="Service" />
+
+            <TextView
+                android:id="@+id/service_seekBar_value"
+                style="@style/AddReviewSeekbarHeading"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/food_seekBar"
+                android:text="" />
+
+            <SeekBar
+                android:id="@+id/service_seekBar"
+                android:max="5"
+                android:progress="0"
+                style="@style/AddReviewSeekbar"
+                android:layout_below="@id/service_seekBar_title" />
+
+            <TextView
+                android:id="@+id/ambience_seekBar_title"
+                style="@style/AddReviewSeekbarHeading"
+                android:layout_below="@+id/service_seekBar"
+                android:text="Ambience" />
+
+            <TextView
+                android:id="@+id/ambience_seekBar_value"
+                style="@style/AddReviewSeekbarHeading"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/service_seekBar"
+                android:text=""/>
+
+            <SeekBar
+                android:id="@+id/ambience_seekBar"
+                android:max="5"
+                android:progress="0"
+                style="@style/AddReviewSeekbar"
+                android:layout_below="@+id/ambience_seekBar_title" />
+
+            <TextView
+                android:id="@+id/cleanliness_seekBar_title"
+                style="@style/AddReviewSeekbarHeading"
+                android:layout_below="@+id/ambience_seekBar"
+                android:text="Cleanliness" />
+
+            <TextView
+                android:id="@+id/cleanliness_seekBar_value"
+                style="@style/AddReviewSeekbarHeading"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/ambience_seekBar"
+                android:text=""/>
+
+            <SeekBar
+                android:id="@+id/cleanliness_seekBar"
+                android:max="5"
+                android:progress="0"
+                style="@style/AddReviewSeekbar"
+                android:layout_below="@+id/cleanliness_seekBar_title" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/review_submit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/cleanliness_seekBar"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                android:src="@android:drawable/ic_dialog_email" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@+id/review_submit_button">
+
+                <EditText
+                    android:id="@+id/text_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:gravity="top"
+                    android:hint="write your review"
+                    android:inputType="textMultiLine"
+                    android:maxLines="20" />
+            </GridLayout>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</ScrollView>
