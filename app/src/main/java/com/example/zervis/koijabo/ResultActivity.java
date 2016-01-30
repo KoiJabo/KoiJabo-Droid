@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.zervis.koijabo.adapters.FirstPageAdapter;
 import com.example.zervis.koijabo.adapters.ResultPageAdapter;
 
 public class ResultActivity extends Activity {

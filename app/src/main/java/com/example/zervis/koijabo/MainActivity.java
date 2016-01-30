@@ -15,7 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.example.zervis.koijabo.adapters.FirstPageAdapter;
+import com.example.zervis.koijabo.adapters.FirstPageCafeAdapter;
+import com.example.zervis.koijabo.adapters.FirstPageRestaurantAdapter;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -23,7 +24,12 @@ public class MainActivity extends AppCompatActivity
 
     RecyclerView mFirstPageRestaurantRecyclerView;
     RecyclerView.LayoutManager mFirstPageRestaurantRecyclerViewLayoutManager;
-    RecyclerView.Adapter firstPageAdapter;
+    RecyclerView.Adapter mfirstPageRestaurantAdapter;
+
+
+    RecyclerView mFirstPageCafeRecyclerView;
+    RecyclerView.LayoutManager mFirstPageCafeRecyclerViewLayoutManager;
+    RecyclerView.Adapter mFirstPageCafeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +60,17 @@ public class MainActivity extends AppCompatActivity
         mFirstPageRestaurantRecyclerView = (RecyclerView) findViewById(R.id.first_page_restaurant_result_list);
         mFirstPageRestaurantRecyclerViewLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mFirstPageRestaurantRecyclerView.setLayoutManager(mFirstPageRestaurantRecyclerViewLayoutManager);
-        firstPageAdapter = new FirstPageAdapter();
-        mFirstPageRestaurantRecyclerView.setAdapter(firstPageAdapter);
+        mfirstPageRestaurantAdapter = new FirstPageRestaurantAdapter();
+        mFirstPageRestaurantRecyclerView.setAdapter(mfirstPageRestaurantAdapter);
+
+
+        mFirstPageCafeRecyclerView = (RecyclerView) findViewById(R.id.first_page_cafe_result_list);
+        mFirstPageCafeRecyclerViewLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mFirstPageCafeRecyclerView .setLayoutManager(mFirstPageCafeRecyclerViewLayoutManager);
+        mFirstPageCafeAdapter = new FirstPageCafeAdapter();
+        mFirstPageCafeRecyclerView.setAdapter(mFirstPageCafeAdapter);
+
+
     }
 
     @Override

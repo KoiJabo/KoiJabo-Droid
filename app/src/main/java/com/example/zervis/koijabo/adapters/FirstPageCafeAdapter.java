@@ -14,12 +14,11 @@ import java.util.List;
 /**
  * Created by Zervis on 30/01/2016.
  */
-public class FirstPageAdapter extends RecyclerView.Adapter<FirstPageAdapter.ViewHolder>{
-
+public class FirstPageCafeAdapter extends RecyclerView.Adapter<FirstPageCafeAdapter.ViewHolder> {
 
     List<String> items = new ArrayList<>();
 
-    public FirstPageAdapter(){
+    public  FirstPageCafeAdapter(){
         items.add("asd");
         items.add("asd");
         items.add("asd");
@@ -27,15 +26,15 @@ public class FirstPageAdapter extends RecyclerView.Adapter<FirstPageAdapter.View
         items.add("asd");
     }
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public FirstPageCafeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.content_first_page_list_item, parent, false);
+                .inflate(R.layout.content_first_page_cafe_result_list_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(FirstPageCafeAdapter.ViewHolder holder, int position) {
         holder.list_item_title.setText(items.get(position));
     }
 
