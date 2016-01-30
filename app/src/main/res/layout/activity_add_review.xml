@@ -45,6 +45,7 @@
             <SeekBar
                 android:id="@+id/food_seekBar"
                 style="@style/AddReviewSeekbar"
+
                 android:max="5"
                 android:progress="0"
                 android:layout_below="@id/food_seekBar_title" />
@@ -117,7 +118,7 @@
                 android:layout_below="@+id/cleanliness_seekBar"
                 android:layout_gravity="bottom|end"
                 android:layout_margin="@dimen/fab_margin"
-                android:src="@android:drawable/ic_dialog_email" />
+                android:src="@mipmap/ic_done" />
 
             <GridLayout
                 android:layout_width="match_parent"
