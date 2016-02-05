@@ -9,15 +9,112 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <ImageView
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_search"
-            android:background="@color/colorPrimary"/>
+            android:background="@drawable/sample2">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/ic_search" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:padding="10dp"
+                android:background="#99000000">
+
+
+
+
+
+                <TextView
+                    android:id="@+id/first_page_heading_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="Restaurant"
+                    android:textColor="@color/cardview_light_background"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/first_page_heading_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/first_page_heading_type"
+                    android:paddingLeft="20dp"
+                    android:text="GLORIA JEAN'S COFFEES"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/first_page_heading_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/first_page_heading_title"
+                    android:paddingLeft="20dp"
+                    android:text="Gulshan 2"
+                    android:textColor="@color/cardview_light_background" />
+
+                <RelativeLayout
+                    android:id="@+id/briefInfoRelativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/first_page_heading_address">
+
+
+                    <ImageView
+                        android:id="@+id/restaurantStar"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@mipmap/ic_star_white" />
+
+                    <TextView
+                        android:id="@+id/list_item_ratingbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="45dp"
+                        android:layout_marginTop="10dp"
+                        android:text="4.5"
+                        android:textColor="@color/cardview_light_background"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/details_establishment_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/list_item_distance"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Casual Dining \n Food Courts"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18dp" />
+
+                    <Button
+                        android:id="@+id/detail_open_close"
+                        android:layout_below="@+id/details_establishment_type"
+                        android:layout_width="90dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@color/colorAccent"
+                        android:text="OPEN"
+                        android:textColor="@color/cardview_light_background"
+                        android:textSize="18dp" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="goToAddReviewPage"
-            />
+            android:onClick="goToAddReviewPage" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
