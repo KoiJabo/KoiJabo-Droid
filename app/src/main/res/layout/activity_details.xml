@@ -290,7 +290,7 @@
                     style="@style/details_page_attribute_linearlayout">
                     <ImageView
                         style="@style/details_page_linearlayout_imageview"
-                        android:src="@mipmap/ic_cuisine"/>
+                        android:src="@mipmap/ic_noise"/>
                     <TextView
                         style="@style/details_page_linearlayout_title_text"
                         android:text="Noise Level : "/>
@@ -303,7 +303,7 @@
                     style="@style/details_page_attribute_linearlayout">
                     <ImageView
                         style="@style/details_page_linearlayout_imageview"
-                        android:src="@mipmap/ic_cuisine"/>
+                        android:src="@mipmap/ic_park"/>
                     <TextView
                         style="@style/details_page_linearlayout_title_text"
                         android:text="Parking : "/>
@@ -316,7 +316,7 @@
                     style="@style/details_page_attribute_linearlayout">
                     <ImageView
                         style="@style/details_page_linearlayout_imageview"
-                        android:src="@mipmap/ic_cuisine"/>
+                        android:src="@mipmap/ic_attire"/>
                     <TextView
                         style="@style/details_page_linearlayout_title_text"
                         android:text="Attire : "/>
@@ -343,7 +343,7 @@
                     style="@style/details_page_attribute_linearlayout">
                     <ImageView
                         style="@style/details_page_linearlayout_imageview"
-                        android:src="@mipmap/ic_cuisine"/>
+                        android:src="@mipmap/ic_good_for"/>
                     <TextView
                         style="@style/details_page_linearlayout_title_text"
                         android:text="Good for : "/>
@@ -357,7 +357,7 @@
                     style="@style/details_page_attribute_linearlayout">
                     <ImageView
                         style="@style/details_page_linearlayout_imageview"
-                        android:src="@mipmap/ic_cuisine"/>
+                        android:src="@mipmap/ic_extablishment"/>
                     <TextView
                         style="@style/details_page_linearlayout_title_text"
                         android:text="Type : "/>
@@ -371,7 +371,7 @@
                     style="@style/details_page_attribute_linearlayout">
                     <ImageView
                         style="@style/details_page_linearlayout_imageview"
-                        android:src="@mipmap/ic_cuisine"/>
+                        android:src="@mipmap/ic_card"/>
                     <TextView
                         style="@style/details_page_linearlayout_title_text"
                         android:text="Cards : "/>
@@ -393,14 +393,14 @@
                         android:id="@+id/details_tags_true"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content">
+                        android:layout_height="200dp">
 
                     </android.support.v7.widget.RecyclerView>
                     <android.support.v7.widget.RecyclerView
-                        android:id="@+id/details_tag_false"
+                        android:id="@+id/details_tags_false"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content">
+                        android:layout_height="200dp">
 
                     </android.support.v7.widget.RecyclerView>
                 </LinearLayout>

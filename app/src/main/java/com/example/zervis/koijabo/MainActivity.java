@@ -57,22 +57,28 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
+        createFirstPageRestaurantRecyclerView();
+        createFirstPageCafeRecyclerView();
+
+    }
+
+    private void createFirstPageRestaurantRecyclerView(){
         mFirstPageRestaurantRecyclerView = (RecyclerView) findViewById(R.id.first_page_restaurant_result_list);
         mFirstPageRestaurantRecyclerViewLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mFirstPageRestaurantRecyclerView.setLayoutManager(mFirstPageRestaurantRecyclerViewLayoutManager);
         mfirstPageRestaurantAdapter = new FirstPageRestaurantAdapter();
         mFirstPageRestaurantRecyclerView.setAdapter(mfirstPageRestaurantAdapter);
 
+    }
 
+    private void createFirstPageCafeRecyclerView(){
         mFirstPageCafeRecyclerView = (RecyclerView) findViewById(R.id.first_page_cafe_result_list);
         mFirstPageCafeRecyclerViewLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mFirstPageCafeRecyclerView .setLayoutManager(mFirstPageCafeRecyclerViewLayoutManager);
         mFirstPageCafeAdapter = new FirstPageCafeAdapter();
         mFirstPageCafeRecyclerView.setAdapter(mFirstPageCafeAdapter);
 
-
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

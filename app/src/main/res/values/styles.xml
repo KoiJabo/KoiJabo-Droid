@@ -33,7 +33,6 @@
     <style name="FirstPageTitle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">10dp</item>
         <item name="android:textSize">20sp</item>
     </style>
 
@@ -48,19 +47,19 @@
     <style name="details_page_linearlayout_imageview">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_height">20dp</item>
         <item name="android:layout_marginRight">10dp</item>
     </style>
     <style name="details_page_linearlayout_title_text">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">4</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
     <style name="details_page_linearlayout_text">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">10</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 </resources>
