@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--/android.support.v4.widget.NestedScrollView-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,26 +9,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#E0E0E0">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/sample2">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:src="@mipmap/ic_search" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="80dp"
-                android:padding="10dp"
-                android:background="#99000000">
-
-
-
+                android:background="#99000000"
+                android:padding="10dp">
 
 
                 <TextView
@@ -99,9 +100,9 @@
 
                     <Button
                         android:id="@+id/detail_open_close"
-                        android:layout_below="@+id/details_establishment_type"
                         android:layout_width="90dp"
                         android:layout_height="30dp"
+                        android:layout_below="@+id/details_establishment_type"
                         android:layout_marginLeft="20dp"
                         android:background="@color/colorAccent"
                         android:text="OPEN"
@@ -111,10 +112,299 @@
             </RelativeLayout>
         </RelativeLayout>
 
-
-        <Button
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="goToAddReviewPage" />
+            android:background="@color/colorPrimary">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:onClick="goToAddReviewPage"
+                    android:text="Call"
+                    android:textColor="@color/cardview_light_background"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="5dp"></View>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:onClick="goToAddReviewPage"
+                    android:text="Map"
+                    android:textColor="@color/cardview_light_background"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="5dp"></View>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark"
+                    android:onClick="goToAddReviewPage"
+                    android:text="Review"
+                    android:textColor="@color/cardview_light_background"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/detail_rating_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Excellent"
+                    android:textSize="20sp"
+                    android:textColor="#4CAF50"/>
+                <TextView
+                    android:id="@+id/detail_rating_number"
+                    android:layout_below="@+id/detail_rating_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5.0"
+                    android:textSize="60sp"
+                    android:textColor="@color/cardview_dark_background"
+                    android:fontFamily="sans-serif-thin"/>
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:id="@+id/details_ambience_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ambience"
+                        android:textSize="20sp"
+                        android:textColor="#4CAF50"
+                        android:layout_marginRight="20dp"/>
+                    <TextView
+                        android:id="@+id/details_ambience_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="4.5"
+                        android:textSize="20sp"
+                        android:textColor="@color/cardview_dark_background"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <TextView
+                        android:id="@+id/details_service_title"
+                        android:layout_below="@+id/details_ambience_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Service"
+                        android:textSize="20sp"
+                        android:textColor="#4CAF50"
+                        android:layout_marginRight="20dp"/>
+                    <TextView
+                        android:id="@+id/detail_service_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4.5"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/details_ambience_rating"
+                        android:textSize="20sp"
+                        android:textColor="@color/cardview_dark_background"
+                        android:fontFamily="sans-serif-light"/>
+
+
+                    <TextView
+                        android:id="@+id/details_food_title"
+                        android:layout_below="@+id/detail_service_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Food"
+                        android:textSize="20sp"
+                        android:textColor="#4CAF50"
+                        android:layout_marginRight="20dp"/>
+                    <TextView
+                        android:id="@+id/detail_food_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4.5"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/detail_service_rating"
+                        android:textSize="20sp"
+                        android:textColor="@color/cardview_dark_background"
+                        android:fontFamily="sans-serif-light"/>
+
+
+                    <TextView
+                        android:id="@+id/details_price_title"
+                        android:layout_below="@+id/detail_food_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Price"
+                        android:textSize="20sp"
+                        android:textColor="#4CAF50"
+                        android:layout_marginRight="20dp"/>
+                    <TextView
+                        android:id="@+id/detail_price_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4.5"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/detail_food_rating"
+                        android:textSize="20sp"
+                        android:textColor="@color/cardview_dark_background"
+                        android:fontFamily="sans-serif-light"/>
+                </RelativeLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    style="@style/details_page_attribute_linearlayout">
+                    <ImageView
+                        style="@style/details_page_linearlayout_imageview"
+                        android:src="@mipmap/ic_cuisine"/>
+                    <TextView
+                        style="@style/details_page_linearlayout_title_text"
+                        android:text="Noise Level : "/>
+                    <TextView
+                        android:id="@+id/details_noise_level_text"
+                        style="@style/details_page_linearlayout_text"
+                        android:text="Calm"/>
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/details_page_attribute_linearlayout">
+                    <ImageView
+                        style="@style/details_page_linearlayout_imageview"
+                        android:src="@mipmap/ic_cuisine"/>
+                    <TextView
+                        style="@style/details_page_linearlayout_title_text"
+                        android:text="Parking : "/>
+                    <TextView
+                        style="@style/details_page_linearlayout_text"
+                        android:text="Parking lot"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/details_page_attribute_linearlayout">
+                    <ImageView
+                        style="@style/details_page_linearlayout_imageview"
+                        android:src="@mipmap/ic_cuisine"/>
+                    <TextView
+                        style="@style/details_page_linearlayout_title_text"
+                        android:text="Attire : "/>
+                    <TextView
+                        style="@style/details_page_linearlayout_text"
+                        android:text="Casual"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/details_page_attribute_linearlayout">
+                    <ImageView
+                        style="@style/details_page_linearlayout_imageview"
+                        android:src="@mipmap/ic_cuisine"/>
+                    <TextView
+                        style="@style/details_page_linearlayout_title_text"
+                        android:text="Cuisine : "/>
+                    <TextView
+                        android:id="@+id/details_cuisine_text"
+                        style="@style/details_page_linearlayout_text"
+                        android:text="Burger, Fastfood"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/details_page_attribute_linearlayout">
+                    <ImageView
+                        style="@style/details_page_linearlayout_imageview"
+                        android:src="@mipmap/ic_cuisine"/>
+                    <TextView
+                        style="@style/details_page_linearlayout_title_text"
+                        android:text="Good for : "/>
+                    <TextView
+                        android:id="@+id/details_good_for_text"
+                        style="@style/details_page_linearlayout_text"
+                        android:text="Families with children, Meetings, Large groups, Romantic, Hangout"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/details_page_attribute_linearlayout">
+                    <ImageView
+                        style="@style/details_page_linearlayout_imageview"
+                        android:src="@mipmap/ic_cuisine"/>
+                    <TextView
+                        style="@style/details_page_linearlayout_title_text"
+                        android:text="Type : "/>
+                    <TextView
+                        android:id="@+id/details_establishment_type_text"
+                        style="@style/details_page_linearlayout_text"
+                        android:text="Casual Dining, Food Courts"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/details_page_attribute_linearlayout">
+                    <ImageView
+                        style="@style/details_page_linearlayout_imageview"
+                        android:src="@mipmap/ic_cuisine"/>
+                    <TextView
+                        style="@style/details_page_linearlayout_title_text"
+                        android:text="Cards : "/>
+                    <TextView
+                        style="@style/details_page_linearlayout_text"
+                        android:text="Visa, Master"/>
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:id="@+id/details_tagsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/details_tags_true"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+
+                    </android.support.v7.widget.RecyclerView>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/details_tag_false"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
     </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</ScrollView>

@@ -3,6 +3,7 @@ package com.example.zervis.koijabo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -21,13 +22,18 @@ public class ResultActivity extends Activity {
 
 
         mResultPageRecyclerView = (RecyclerView) findViewById(R.id.result_list);
-        mResultPageRecyclerViewLayoutManager = new LinearLayoutManager(this);
+        mResultPageRecyclerViewLayoutManager = new GridLayoutManager(this, 3);
         mResultPageRecyclerView.setLayoutManager(mResultPageRecyclerViewLayoutManager);
         resultPageAdapter = new ResultPageAdapter();
         mResultPageRecyclerView.setAdapter(resultPageAdapter);
     }
 
     public void goToDetailsPage(View view){
+        Intent intent = new Intent(this, DetailsActivity.class);
+        startActivity(intent);
+    }
+
+    public void listItemOnClick(View view){
         Intent intent = new Intent(this, DetailsActivity.class);
         startActivity(intent);
     }
