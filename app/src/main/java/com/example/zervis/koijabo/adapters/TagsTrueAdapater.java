@@ -19,13 +19,8 @@ public class TagsTrueAdapater extends RecyclerView.Adapter<TagsTrueAdapater.View
 
 
     List<String> items = new ArrayList<>();
-    public TagsTrueAdapater(){
-        items.add("asd");
-        items.add("asd");
-        items.add("asd");
-        items.add("asd");
-        items.add("asd");
-        items.add("asd");
+    public TagsTrueAdapater(List<String> items){
+        this.items = items;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

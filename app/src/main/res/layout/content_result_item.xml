@@ -22,41 +22,40 @@
         <TextView
             android:id="@+id/result_list_item_title"
             android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-
-
             android:layout_weight="1"
             android:ellipsize="none"
-            android:maxLines="100"
+            android:maxLines="3"
             android:scrollHorizontally="false"
-
-            android:text="Gloria Jeans Cofasdasdasdasdasdasdasfes"
+            android:text="Gloria JeansCofasdasdasdasdasdasdasfes"
             android:textColor="@color/cardview_dark_background"
             android:textSize="12dp" />
 
         <TextView
             android:id="@+id/result_list_item_key_cuisine"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="20dp"
             android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:textSize="8dp"
             android:text="Coffee, Snacks" />
 
         <TextView
             android:id="@+id/result_list_item_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/list_item_key_cuisine"
-            android:layout_marginBottom="10dp"
+            android:layout_width="140dp"
+            android:layout_height="20dp"
+            android:paddingRight="10dp"
             android:paddingLeft="10dp"
+            android:layout_below="@+id/list_item_key_cuisine"
             android:textSize="8dp"
             android:text="Road 24/a, Gulshan 1" />
 
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="140dp"
             android:layout_height="wrap_content">
 
 
@@ -96,7 +95,7 @@
                 android:layout_below="@+id/result_list_item_open_or_close"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="15dp"
                 android:textSize="8dp"
                 android:text="200 meter away"
                 android:textColor="@color/cardview_dark_background"/>

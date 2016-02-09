@@ -125,7 +125,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/first_page_restaurant_result_list"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin" />
@@ -155,7 +155,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/first_page_cafe_result_list"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin" />
     </LinearLayout>

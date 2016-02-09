@@ -14,6 +14,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/first_page_cafe_result_list_item_img"
             android:layout_width="140dp"
             android:layout_height="100dp"
             android:src="@drawable/sample" />

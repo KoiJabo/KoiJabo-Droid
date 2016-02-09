@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +18,17 @@ import android.view.MenuItem;
 
 import com.example.zervis.koijabo.adapters.FirstPageCafeAdapter;
 import com.example.zervis.koijabo.adapters.FirstPageRestaurantAdapter;
+import com.example.zervis.koijabo.adapters.ResultPageAdapter;
+import com.example.zervis.koijabo.pojo.ResultModel;
+import com.example.zervis.koijabo.restcall.APIInterface;
+import com.example.zervis.koijabo.restcall.RestClient;
+
+import java.util.List;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -63,21 +75,56 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void createFirstPageRestaurantRecyclerView(){
+
         mFirstPageRestaurantRecyclerView = (RecyclerView) findViewById(R.id.first_page_restaurant_result_list);
         mFirstPageRestaurantRecyclerViewLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mFirstPageRestaurantRecyclerView.setLayoutManager(mFirstPageRestaurantRecyclerViewLayoutManager);
-        mfirstPageRestaurantAdapter = new FirstPageRestaurantAdapter();
-        mFirstPageRestaurantRecyclerView.setAdapter(mfirstPageRestaurantAdapter);
+        APIInterface service = RestClient.getClient();
+        Call<List<ResultModel>> call = service.getSearchResult("");
+        call.enqueue(new Callback<List<ResultModel>>() {
+            @Override
+            public void onResponse(Response<List<ResultModel>> response, Retrofit retrofit) {
+                if (response.isSuccess()) {
+                    mfirstPageRestaurantAdapter = new FirstPageRestaurantAdapter(MainActivity.this, response.body());
+                    mFirstPageRestaurantRecyclerView.setAdapter(mfirstPageRestaurantAdapter);
+                    Log.w("result cafe model", response.raw().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                // show some sort of dialog or something
+                Log.v("Failed cafe_model", "Failed");
+            }
+        });
 
     }
 
     private void createFirstPageCafeRecyclerView(){
+
         mFirstPageCafeRecyclerView = (RecyclerView) findViewById(R.id.first_page_cafe_result_list);
         mFirstPageCafeRecyclerViewLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mFirstPageCafeRecyclerView .setLayoutManager(mFirstPageCafeRecyclerViewLayoutManager);
-        mFirstPageCafeAdapter = new FirstPageCafeAdapter();
-        mFirstPageCafeRecyclerView.setAdapter(mFirstPageCafeAdapter);
 
+
+        APIInterface service = RestClient.getClient();
+        Call<List<ResultModel>> call = service.getSearchResult("");
+        call.enqueue(new Callback<List<ResultModel>>() {
+            @Override
+            public void onResponse(Response<List<ResultModel>> response, Retrofit retrofit) {
+                if (response.isSuccess()) {
+                    mFirstPageCafeAdapter = new FirstPageCafeAdapter(MainActivity.this, response.body());
+                    mFirstPageCafeRecyclerView.setAdapter(mFirstPageCafeAdapter);
+                    Log.w("result cafe model", response.raw().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                // show some sort of dialog or something
+                Log.v("Failed cafe_model", "Failed");
+            }
+        });
     }
     @Override
     public void onBackPressed() {

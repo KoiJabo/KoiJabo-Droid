@@ -1,12 +1,16 @@
 package com.example.zervis.koijabo.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zervis.koijabo.R;
+import com.example.zervis.koijabo.pojo.ResultModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +20,12 @@ import java.util.List;
  */
 public class FirstPageCafeAdapter extends RecyclerView.Adapter<FirstPageCafeAdapter.ViewHolder> {
 
-    List<String> items = new ArrayList<>();
+    List<ResultModel> items = new ArrayList<ResultModel>();
+    Context mContext;
 
-    public  FirstPageCafeAdapter(){
-        items.add("asd");
-        items.add("asd");
-        items.add("asd");
-        items.add("asd");
-        items.add("asd");
+    public  FirstPageCafeAdapter(Context context, List<ResultModel> resultModelList){
+        this.items = resultModelList;
+        this.mContext = context;
     }
     @Override
     public FirstPageCafeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -35,7 +37,15 @@ public class FirstPageCafeAdapter extends RecyclerView.Adapter<FirstPageCafeAdap
 
     @Override
     public void onBindViewHolder(FirstPageCafeAdapter.ViewHolder holder, int position) {
-        holder.list_item_title.setText(items.get(position));
+        holder.list_item_title.setText(items.get(position).getName());
+        try {
+            Picasso.with(mContext)
+                    .load(items.get(position).getTitleImageUrl().toString())
+                    .into(holder.first_page_cafe_result_list_item_img);
+        }
+        catch (Exception e){
+
+        }
     }
 
     @Override
@@ -46,10 +56,12 @@ public class FirstPageCafeAdapter extends RecyclerView.Adapter<FirstPageCafeAdap
     class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView list_item_title;
+        public ImageView first_page_cafe_result_list_item_img;
 
         public ViewHolder(View itemView) {
             super(itemView);
             list_item_title = (TextView)itemView.findViewById(R.id.first_page_restaurant_result_list_item_title);
+            first_page_cafe_result_list_item_img = (ImageView)itemView.findViewById(R.id.first_page_cafe_result_list_item_img);
         }
     }
 }

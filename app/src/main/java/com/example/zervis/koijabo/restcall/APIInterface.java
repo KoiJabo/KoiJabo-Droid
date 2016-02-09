@@ -1,5 +1,6 @@
 package com.example.zervis.koijabo.restcall;
 
+import com.example.zervis.koijabo.pojo.DetailsModel;
 import com.example.zervis.koijabo.pojo.ResultModel;
 
 import java.util.List;
@@ -17,5 +18,5 @@ public interface APIInterface {
     Call<List<ResultModel>> getSearchResult(@Query("value") String value);
 
     @GET("api/Restaurant/get")
-    Call<ResultModel> getDetails(@Query("id") String value);
+    Call<DetailsModel> getDetails(@Query("id") String value);
 }

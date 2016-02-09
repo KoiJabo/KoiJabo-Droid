@@ -17,14 +17,8 @@ import java.util.List;
  */
 public class TagsFalseAdapter extends RecyclerView.Adapter<TagsFalseAdapter.ViewHolder>{
     List<String> items = new ArrayList<>();
-    public TagsFalseAdapter(){
-        items.add("asd");
-        items.add("asd");
-        items.add("asd");
-        items.add("asd");
-        items.add("asd");
-        items.add("asd");
-        items.add("asd");
+    public TagsFalseAdapter(List<String> items){
+        this.items = items;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

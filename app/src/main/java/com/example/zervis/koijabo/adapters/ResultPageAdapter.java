@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zervis.koijabo.R;
+import com.example.zervis.koijabo.lib.Utility;
 import com.example.zervis.koijabo.pojo.ResultModel;
 import com.example.zervis.koijabo.restcall.APIInterface;
 import com.example.zervis.koijabo.restcall.RestClient;
@@ -53,7 +54,16 @@ public class ResultPageAdapter extends RecyclerView.Adapter<ResultPageAdapter.Vi
         catch (Exception e){
 
         }
+        String cuisine = Utility.listToStringBuilder((ArrayList<String>) items.get(position).getCuisines());
+        holder.result_list_item_key_cuisine.setText(cuisine);
+        holder.result_list_item_address.setText(items.get(position).getArea());
+        holder.result_list_item_ratingbar.setText(items.get(position).getGeneralRatingRating().toString());
 
+        String openOrClose =  items.get(position).getIsOpenNow()? "Open" : "Close";
+        holder.result_list_item_open_or_close.setText(openOrClose);
+
+        String distance = Utility.distanceString(items.get(position).getDistance());
+        holder.result_list_item_distance.setText(distance);
     }
 
     @Override
@@ -65,11 +75,21 @@ public class ResultPageAdapter extends RecyclerView.Adapter<ResultPageAdapter.Vi
 
         public TextView list_item_title;
         public ImageView result_list_item_image;
+        public TextView result_list_item_key_cuisine;
+        public TextView result_list_item_address;
+        public TextView result_list_item_ratingbar;
+        public TextView result_list_item_open_or_close;
+        public TextView result_list_item_distance;
 
         public ViewHolder(View itemView) {
             super(itemView);
             list_item_title = (TextView)itemView.findViewById(R.id.result_list_item_title);
             result_list_item_image = (ImageView)itemView.findViewById(R.id.result_list_item_image);
+            result_list_item_key_cuisine = (TextView)itemView.findViewById(R.id.result_list_item_key_cuisine);
+            result_list_item_address = (TextView)itemView.findViewById(R.id.result_list_item_address);
+            result_list_item_ratingbar = (TextView)itemView.findViewById(R.id.result_list_item_ratingbar);
+            result_list_item_open_or_close = (TextView)itemView.findViewById(R.id.result_list_item_open_or_close);
+            result_list_item_distance = (TextView)itemView.findViewById(R.id.result_list_item_distance);
         }
     }
 }
