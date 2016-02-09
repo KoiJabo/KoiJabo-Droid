@@ -33,7 +33,8 @@ public class ResultActivity extends Activity {
         setContentView(R.layout.activity_result);
 
         mResultPageRecyclerView = (RecyclerView) findViewById(R.id.result_list);
-        mResultPageRecyclerViewLayoutManager = new GridLayoutManager(this, 3);
+//        mResultPageRecyclerViewLayoutManager = new GridLayoutManager(this, 1);
+        mResultPageRecyclerViewLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mResultPageRecyclerView.setLayoutManager(mResultPageRecyclerViewLayoutManager);
 
 
