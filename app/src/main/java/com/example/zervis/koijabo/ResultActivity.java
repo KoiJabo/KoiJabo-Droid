@@ -37,9 +37,11 @@ public class ResultActivity extends Activity {
         mResultPageRecyclerViewLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mResultPageRecyclerView.setLayoutManager(mResultPageRecyclerViewLayoutManager);
 
+        Intent intent = getIntent();
+        String Value =  intent.getExtras().getString("Value");
 
         APIInterface service = RestClient.getClient();
-        Call<List<ResultModel>> call = service.getSearchResult("");
+        Call<List<ResultModel>> call = service.getSearchResult(Value);
         call.enqueue(new Callback<List<ResultModel>>() {
             @Override
             public void onResponse(Response<List<ResultModel>> response, Retrofit retrofit) {

@@ -1,6 +1,7 @@
 package com.example.zervis.koijabo.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.zervis.koijabo.DetailsActivity;
 import com.example.zervis.koijabo.R;
 import com.example.zervis.koijabo.lib.Utility;
 import com.example.zervis.koijabo.pojo.ResultModel;
@@ -71,7 +73,7 @@ public class ResultPageAdapter extends RecyclerView.Adapter<ResultPageAdapter.Vi
         return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView list_item_title;
         public ImageView result_list_item_image;
@@ -83,6 +85,7 @@ public class ResultPageAdapter extends RecyclerView.Adapter<ResultPageAdapter.Vi
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             list_item_title = (TextView)itemView.findViewById(R.id.result_list_item_title);
             result_list_item_image = (ImageView)itemView.findViewById(R.id.result_list_item_image);
             result_list_item_key_cuisine = (TextView)itemView.findViewById(R.id.result_list_item_key_cuisine);
@@ -90,6 +93,18 @@ public class ResultPageAdapter extends RecyclerView.Adapter<ResultPageAdapter.Vi
             result_list_item_ratingbar = (TextView)itemView.findViewById(R.id.result_list_item_ratingbar);
             result_list_item_open_or_close = (TextView)itemView.findViewById(R.id.result_list_item_open_or_close);
             result_list_item_distance = (TextView)itemView.findViewById(R.id.result_list_item_distance);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            int position = getAdapterPosition();
+            String id = items.get(position).getId();
+
+            Intent intent = new Intent(mContext, DetailsActivity.class);
+            intent.putExtra("id",id);
+            mContext.startActivity(intent);
+
         }
     }
 }

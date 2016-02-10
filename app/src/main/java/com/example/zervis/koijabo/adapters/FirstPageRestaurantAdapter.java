@@ -1,6 +1,7 @@
 package com.example.zervis.koijabo.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.zervis.koijabo.DetailsActivity;
 import com.example.zervis.koijabo.R;
 import com.example.zervis.koijabo.pojo.ResultModel;
 import com.squareup.picasso.Picasso;
@@ -18,6 +20,7 @@ import java.util.List;
 /**
  * Created by Zervis on 30/01/2016.
  */
+
 public class FirstPageRestaurantAdapter extends RecyclerView.Adapter<FirstPageRestaurantAdapter.ViewHolder>{
 
     List<ResultModel> items = new ArrayList<ResultModel>();
@@ -54,7 +57,7 @@ public class FirstPageRestaurantAdapter extends RecyclerView.Adapter<FirstPageRe
         return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
 
         public TextView first_page_restaurant_result_list_item_title;
         public ImageView first_page_restaurant_result_list_item_img;
@@ -62,9 +65,22 @@ public class FirstPageRestaurantAdapter extends RecyclerView.Adapter<FirstPageRe
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             first_page_restaurant_result_list_item_title = (TextView)itemView.findViewById(R.id.first_page_restaurant_result_list_item_title);
             first_page_restaurant_result_list_item_img = (ImageView)itemView.findViewById(R.id.first_page_restaurant_result_list_item_img);
             restaurant_id = (TextView)itemView.findViewById(R.id.restaurant_id);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+                int position = getAdapterPosition();
+                String id = items.get(position).getId();
+
+                Intent intent = new Intent(mContext, DetailsActivity.class);
+                intent.putExtra("id",id);
+                mContext.startActivity(intent);
+
         }
     }
 }

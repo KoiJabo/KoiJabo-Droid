@@ -79,7 +79,7 @@ public class DetailsActivity extends Activity {
         address.setText(detailsModel.getAddress());
 
         TextView generalRating = (TextView)findViewById(R.id.details_page_general_rating);
-        generalRating.setText(detailsModel.getGeneralRatingRating());
+        generalRating.setText(detailsModel.getGeneralRatingRating().toString());
 
 
         TextView establishmentType = (TextView)findViewById(R.id.details_page_establishment_type);

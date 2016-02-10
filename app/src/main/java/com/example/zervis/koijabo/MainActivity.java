@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity
         createFirstPageRestaurantRecyclerView();
         createFirstPageCafeRecyclerView();
 
+
+
     }
 
     private void createFirstPageRestaurantRecyclerView(){
@@ -117,6 +119,8 @@ public class MainActivity extends AppCompatActivity
                     mFirstPageCafeAdapter = new FirstPageCafeAdapter(MainActivity.this, response.body());
                     mFirstPageCafeRecyclerView.setAdapter(mFirstPageCafeAdapter);
                     Log.w("result cafe model", response.raw().toString());
+
+
                 }
             }
 
@@ -200,6 +204,8 @@ public class MainActivity extends AppCompatActivity
     public void cafelistItemOnClick(View view){
         TextView textView = (TextView)view.getRootView().findViewById(R.id.cafe_id);
         String _id = (String) textView.getText();
+
+
 
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra("id",_id);
