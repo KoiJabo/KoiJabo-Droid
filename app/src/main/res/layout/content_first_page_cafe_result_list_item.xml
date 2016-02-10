@@ -6,13 +6,19 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:foreground="?android:attr/selectableItemBackground"
-    android:onClick="listItemOnClick">
+    android:onClick="cafelistItemOnClick">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
+        <TextView
+            android:id="@+id/cafe_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:textSize="0dp"
+            android:text="asdasdasd"/>
         <ImageView
             android:id="@+id/first_page_cafe_result_list_item_img"
             android:layout_width="140dp"

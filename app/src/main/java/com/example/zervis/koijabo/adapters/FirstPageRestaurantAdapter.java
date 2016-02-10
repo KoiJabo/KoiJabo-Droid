@@ -37,6 +37,7 @@ public class FirstPageRestaurantAdapter extends RecyclerView.Adapter<FirstPageRe
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.restaurant_id.setText(items.get(position).getId());
         holder.first_page_restaurant_result_list_item_title.setText(items.get(position).getName());
         try {
             Picasso.with(mContext)
@@ -57,11 +58,13 @@ public class FirstPageRestaurantAdapter extends RecyclerView.Adapter<FirstPageRe
 
         public TextView first_page_restaurant_result_list_item_title;
         public ImageView first_page_restaurant_result_list_item_img;
+        public TextView restaurant_id;
 
         public ViewHolder(View itemView) {
             super(itemView);
             first_page_restaurant_result_list_item_title = (TextView)itemView.findViewById(R.id.first_page_restaurant_result_list_item_title);
             first_page_restaurant_result_list_item_img = (ImageView)itemView.findViewById(R.id.first_page_restaurant_result_list_item_img);
+            restaurant_id = (TextView)itemView.findViewById(R.id.restaurant_id);
         }
     }
 }

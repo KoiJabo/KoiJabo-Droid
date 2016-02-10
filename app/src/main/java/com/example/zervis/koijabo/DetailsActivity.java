@@ -7,15 +7,20 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.zervis.koijabo.adapters.FirstPageRestaurantAdapter;
 import com.example.zervis.koijabo.adapters.TagsFalseAdapter;
 import com.example.zervis.koijabo.adapters.TagsTrueAdapater;
+import com.example.zervis.koijabo.lib.Utility;
 import com.example.zervis.koijabo.pojo.DetailsModel;
 import com.example.zervis.koijabo.pojo.ResultModel;
 import com.example.zervis.koijabo.restcall.APIInterface;
 import com.example.zervis.koijabo.restcall.RestClient;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit.Call;
@@ -39,9 +44,10 @@ public class DetailsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-
+        Intent intent = getIntent();
+        String id =  intent.getExtras().getString("id");
         APIInterface service = RestClient.getClient();
-        Call<DetailsModel> call = service.getDetails("56b634d21803722ba844cc92");
+        Call<DetailsModel> call = service.getDetails(id);
         call.enqueue(new Callback<DetailsModel>() {
             @Override
             public void onResponse(Response<DetailsModel> response, Retrofit retrofit) {
@@ -66,6 +72,37 @@ public class DetailsActivity extends Activity {
 
     private void assignValues(DetailsModel detailsModel) {
 
+        TextView title = (TextView)findViewById(R.id.details_page_heading_title);
+        title.setText(detailsModel.getName());
+
+        TextView address = (TextView)findViewById(R.id.details_page_heading_address);
+        address.setText(detailsModel.getAddress());
+
+        TextView generalRating = (TextView)findViewById(R.id.details_page_general_rating);
+        generalRating.setText(detailsModel.getGeneralRatingRating());
+
+
+        TextView establishmentType = (TextView)findViewById(R.id.details_page_establishment_type);
+        String establisment = Utility.listToStringbuilderWithNewLine((ArrayList<String>) detailsModel.getEstablishmentType());
+        establishmentType.setText(establisment);
+
+        TextView openOrClose = (TextView)findViewById(R.id.detail_page_open_close);
+        String openorclose = detailsModel.getIsOpenNow()? "Open" : "Close";
+        openOrClose.setText(openorclose);
+
+
+        TextView ratingText = (TextView)findViewById(R.id.detail_page_rating_text);
+        String ratingtext = Utility.ratingText(detailsModel.getGeneralRatingRating());
+        ratingText.setText(ratingtext);
+
+
+        TextView rating = (TextView)findViewById(R.id.detail_page_rating_number);
+        rating.setText(detailsModel.getGeneralRatingRating().toString());
+
+
+
+
+
         mTagsTrueRecyclerView = (RecyclerView) findViewById(R.id.details_tags_true);
         mTagsTrueRecyclerLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mTagsTrueRecyclerView.setLayoutManager(mTagsTrueRecyclerLayoutManager);
@@ -77,6 +114,10 @@ public class DetailsActivity extends Activity {
         mTagsFalseRecyclerView.setLayoutManager(mTagsFalseRecyclerLayoutManager);
         mTagsFalseRecyclerViewAdapter = new TagsFalseAdapter(detailsModel.getTagsFalse());
         mTagsFalseRecyclerView.setAdapter(mTagsFalseRecyclerViewAdapter);
+
+
+
+
     }
 
     public void goToAddReviewPage(View view){

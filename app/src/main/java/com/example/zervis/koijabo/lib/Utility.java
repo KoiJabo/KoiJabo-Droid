@@ -24,4 +24,25 @@ public class Utility {
         }
         return distanceString;
     }
+
+    public static  String listToStringbuilderWithNewLine(ArrayList<String> stringArrayList){
+        String string = "";
+        for(int i = 0; i< stringArrayList.size(); i++){
+            string += stringArrayList.get(i)+"\n";
+        }
+        return string;
+    }
+
+    public static String ratingText(double rating){
+        if (rating > 0 && rating < 2)
+            return "Not Good";
+        else if (2 <= rating && rating <= 3)
+            return "Average";
+        else if (rating <= 4)
+            return "Good";
+        else if (rating == 5)
+            return "Excelent";
+        else
+            return "Not Rated yet";
+    }
 }

@@ -15,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.zervis.koijabo.adapters.FirstPageCafeAdapter;
 import com.example.zervis.koijabo.adapters.FirstPageRestaurantAdapter;
@@ -188,8 +189,20 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    public void listItemOnClick(View view){
+    public void restaurantlistItemOnClick(View view){
+        TextView textView = (TextView)view.getRootView().findViewById(R.id.restaurant_id);
+        String _id =(String) textView.getText();
+
         Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra("id",_id);
+        startActivity(intent);
+    }
+    public void cafelistItemOnClick(View view){
+        TextView textView = (TextView)view.getRootView().findViewById(R.id.cafe_id);
+        String _id = (String) textView.getText();
+
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra("id",_id);
         startActivity(intent);
     }
 }

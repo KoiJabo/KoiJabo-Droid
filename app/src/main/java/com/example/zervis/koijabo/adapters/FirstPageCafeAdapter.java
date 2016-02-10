@@ -37,6 +37,7 @@ public class FirstPageCafeAdapter extends RecyclerView.Adapter<FirstPageCafeAdap
 
     @Override
     public void onBindViewHolder(FirstPageCafeAdapter.ViewHolder holder, int position) {
+        holder.cafe_id.setText(items.get(position).getId());
         holder.list_item_title.setText(items.get(position).getName());
         try {
             Picasso.with(mContext)
@@ -46,6 +47,7 @@ public class FirstPageCafeAdapter extends RecyclerView.Adapter<FirstPageCafeAdap
         catch (Exception e){
 
         }
+
     }
 
     @Override
@@ -57,11 +59,13 @@ public class FirstPageCafeAdapter extends RecyclerView.Adapter<FirstPageCafeAdap
 
         public TextView list_item_title;
         public ImageView first_page_cafe_result_list_item_img;
+        public TextView cafe_id;
 
         public ViewHolder(View itemView) {
             super(itemView);
             list_item_title = (TextView)itemView.findViewById(R.id.first_page_restaurant_result_list_item_title);
             first_page_cafe_result_list_item_img = (ImageView)itemView.findViewById(R.id.first_page_cafe_result_list_item_img);
+            cafe_id = (TextView)itemView.findViewById(R.id.cafe_id);
         }
     }
 }
