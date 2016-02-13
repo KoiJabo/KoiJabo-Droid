@@ -90,7 +90,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_below="@+id/list_item_distance"
                     android:layout_marginRight="12dp"
                     android:layout_marginTop="5dp"
                     android:textSize="16dp"
@@ -99,7 +98,7 @@
 
             </RelativeLayout>
         </RelativeLayout>
-
+        <include layout="@layout/content_turn_on_location_request"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

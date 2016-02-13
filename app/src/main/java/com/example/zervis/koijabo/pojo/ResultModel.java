@@ -16,7 +16,7 @@ public class ResultModel {
     private Boolean IsOpenNow;
     @SerializedName("Distance")
     @Expose
-    private Integer Distance;
+    private Double Distance;
     @SerializedName("Name")
     @Expose
     private String Name;
@@ -86,7 +86,7 @@ public class ResultModel {
      * @return
      * The Distance
      */
-    public Integer getDistance() {
+    public Double getDistance() {
         return Distance;
     }
 
@@ -95,7 +95,7 @@ public class ResultModel {
      * @param Distance
      * The Distance
      */
-    public void setDistance(Integer Distance) {
+    public void setDistance(Double Distance) {
         this.Distance = Distance;
     }
 

@@ -1,0 +1,46 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:textAlignment="gravity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_detect_location_title"
+        android:typeface="sans"
+        android:textStyle="bold"
+        android:textSize="28dp"
+        android:padding="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_detect_location_text"
+        android:elegantTextHeight="true"
+        android:typeface="sans"
+        android:textStyle="normal"
+        android:textSize="18dp"
+        android:padding="10dp"/>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <Button
+            android:id="@+id/dialog_detect_location_positive_button"
+            android:onClick="openLocationSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_detect_location_positive"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"/>
+        <Button
+            android:id="@+id/dialog_detect_location_negative_button"
+            android:onClick="close_Location_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_detect_location_negative"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" />
+    </RelativeLayout>
+</LinearLayout>
