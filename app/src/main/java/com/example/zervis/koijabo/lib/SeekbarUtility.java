@@ -76,4 +76,21 @@ public class SeekbarUtility {
                 return "";
         }
     }
+
+    public static String generalSeekbarValue(int rating) {
+        switch (rating){
+            case 1:
+                return "Very bad";
+            case 2:
+                return "Bad";
+            case 3:
+                return "Average";
+            case 4:
+                return "Good";
+            case 5:
+                return "Awesome";
+            default:
+                return "";
+        }
+    }
 }

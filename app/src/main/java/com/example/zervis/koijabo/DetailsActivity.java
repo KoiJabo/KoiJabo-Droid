@@ -122,6 +122,9 @@ public class DetailsActivity extends Activity {
 
     public void goToAddReviewPage(View view){
         Intent intent = new Intent(this, AddReviewActivity.class);
+
+        String id = detailsModel.getId();
+        intent.putExtra("id",id);
         startActivity(intent);
     }
 }

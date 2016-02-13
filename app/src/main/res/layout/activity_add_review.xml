@@ -45,7 +45,6 @@
             <SeekBar
                 android:id="@+id/food_seekBar"
                 style="@style/AddReviewSeekbar"
-
                 android:max="5"
                 android:progress="0"
                 android:layout_below="@id/food_seekBar_title" />
@@ -110,22 +109,35 @@
                 style="@style/AddReviewSeekbar"
                 android:layout_below="@+id/cleanliness_seekBar_title" />
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/review_submit_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/generalRating_seekBar_title"
+                style="@style/AddReviewSeekbarHeading"
+                android:layout_below="@+id/cleanliness_seekBar"
+                android:text="Overall" />
+
+            <TextView
+                android:id="@+id/generalRating_seekBar_value"
+                style="@style/AddReviewSeekbarHeading"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/cleanliness_seekBar"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/fab_margin"
-                android:src="@mipmap/ic_done" />
+                android:text=""/>
+
+            <SeekBar
+                android:id="@+id/generalRating_seekBar"
+                android:max="5"
+                android:progress="0"
+                style="@style/AddReviewSeekbar"
+                android:layout_below="@+id/generalRating_seekBar_value" />
+
+
 
             <LinearLayout
+                android:id="@+id/text_review_layout"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:layout_below="@+id/review_submit_button">
+                android:layout_below="@+id/generalRating_seekBar">
 
                 <EditText
                     android:id="@+id/text_review"
@@ -138,8 +150,21 @@
                     android:inputType="textMultiLine"
                     android:maxLines="20" />
             </LinearLayout>
-
-
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/review_submit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="bottom"
+                android:layout_margin="@dimen/fab_margin"
+                android:src="@mipmap/ic_done" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_review_layout"
+                android:layout_margin="15dp"
+                android:text="Submit"
+                android:onClick="submitReview"/>
         </RelativeLayout>
 
     </RelativeLayout>
