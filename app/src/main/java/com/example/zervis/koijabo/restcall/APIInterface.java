@@ -3,6 +3,8 @@ package com.example.zervis.koijabo.restcall;
 import com.example.zervis.koijabo.pojo.DetailsModel;
 import com.example.zervis.koijabo.pojo.ReviewSubmit;
 import com.example.zervis.koijabo.pojo.SearchResult;
+import com.example.zervis.koijabo.pojo.SearchSuggestion;
+
 import retrofit.Callback;
 
 import java.util.List;
@@ -23,6 +25,10 @@ public interface APIInterface {
 
     @GET("api/Restaurant/get")
     Call<DetailsModel> getDetails(@Query("id") String value);
+
+    @GET("api/Restaurant/getoptionsfordashboard")
+    Call<SearchSuggestion> getSearchSuggestions();
+
 
     @POST("api/review/create")
     Call<ReviewSubmit> submitReview(@Body ReviewSubmit review);
