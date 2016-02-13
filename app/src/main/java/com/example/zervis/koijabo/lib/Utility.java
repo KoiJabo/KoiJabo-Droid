@@ -1,5 +1,8 @@
 package com.example.zervis.koijabo.lib;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+
 import java.util.ArrayList;
 
 /**
@@ -14,14 +17,11 @@ public class Utility {
         return string;
     }
 
-    public static String distanceString(int distance){
+    public static String distanceString(Double distance){
         String distanceString = "";
-        if (distance<1000){
-            distanceString = distance + "m away";
-        }
-        else if(distance>1000){
-            distanceString = (distance/1000) + "km away";
-        }
+        distanceString = String.format("%.02f km away",distance);
+
+
         return distanceString;
     }
 
@@ -45,4 +45,6 @@ public class Utility {
         else
             return "Not Rated yet";
     }
+
+
 }

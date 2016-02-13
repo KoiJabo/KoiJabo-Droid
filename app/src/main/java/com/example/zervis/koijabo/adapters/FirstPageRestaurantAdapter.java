@@ -25,10 +25,14 @@ public class FirstPageRestaurantAdapter extends RecyclerView.Adapter<FirstPageRe
 
     List<ResultModel> items = new ArrayList<ResultModel>();
     Context mContext;
+    double lat=0;
+    double lon=0;
 
-    public FirstPageRestaurantAdapter(Context context, List<ResultModel> resultModelList){
+    public FirstPageRestaurantAdapter(Context context, List<ResultModel> resultModelList, double lat, double lon){
         this.items = resultModelList;
         this.mContext = context;
+        this.lat = lat;
+        this.lon = lon;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -73,14 +77,15 @@ public class FirstPageRestaurantAdapter extends RecyclerView.Adapter<FirstPageRe
 
         @Override
         public void onClick(View v) {
+            int position = getAdapterPosition();
+            String id = items.get(position).getId();
 
-                int position = getAdapterPosition();
-                String id = items.get(position).getId();
+            Intent intent = new Intent(mContext, DetailsActivity.class);
+            intent.putExtra("id",id);
+            intent.putExtra("lat", lat);
+            intent.putExtra("lon", lon);
 
-                Intent intent = new Intent(mContext, DetailsActivity.class);
-                intent.putExtra("id",id);
-                mContext.startActivity(intent);
-
+            mContext.startActivity(intent);
         }
     }
 }

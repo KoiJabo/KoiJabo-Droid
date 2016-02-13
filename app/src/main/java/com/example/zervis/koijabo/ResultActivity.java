@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.zervis.koijabo.adapters.ResultPageAdapter;
+import com.example.zervis.koijabo.lib.LocationDetector;
 import com.example.zervis.koijabo.pojo.ResultModel;
 import com.example.zervis.koijabo.pojo.SearchResult;
 import com.example.zervis.koijabo.restcall.APIInterface;
@@ -28,6 +29,9 @@ public class ResultActivity extends Activity {
     RecyclerView mResultPageRecyclerView;
     RecyclerView.LayoutManager mResultPageRecyclerViewLayoutManager;
     RecyclerView.Adapter resultPageAdapter;
+    double lat=0;
+    double lon=0;
+    String Value = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +43,13 @@ public class ResultActivity extends Activity {
         mResultPageRecyclerView.setLayoutManager(mResultPageRecyclerViewLayoutManager);
 
         Intent intent = getIntent();
-        String Value =  intent.getExtras().getString("Value");
+        Value =  intent.getExtras().getString("Value");
+        lat = intent.getExtras().getDouble("lat");
+        lon = intent.getExtras().getDouble("lon");
+
 
         APIInterface service = RestClient.getClient();
-        Call<SearchResult> call = service.getSearchResult(Value);
+        Call<SearchResult> call = service.getSearchResult(Value, lat, lon);
         call.enqueue(new Callback<SearchResult>() {
             @Override
             public void onResponse(Response<SearchResult> response, Retrofit retrofit) {

@@ -1,6 +1,8 @@
 package com.example.zervis.koijabo;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,10 +22,14 @@ import android.widget.TextView;
 import com.example.zervis.koijabo.adapters.FirstPageCafeAdapter;
 import com.example.zervis.koijabo.adapters.FirstPageRestaurantAdapter;
 import com.example.zervis.koijabo.adapters.ResultPageAdapter;
+import com.example.zervis.koijabo.lib.LocationDetector;
 import com.example.zervis.koijabo.pojo.ResultModel;
 import com.example.zervis.koijabo.pojo.SearchResult;
 import com.example.zervis.koijabo.restcall.APIInterface;
 import com.example.zervis.koijabo.restcall.RestClient;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.List;
 
@@ -35,7 +41,17 @@ import retrofit.Retrofit;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    LocationDetector locationDetector;
+    Thread mThread;
+    private android.os.Handler handler;
+    public Location mCurrentLocation;
+    private boolean first = true;
+    public static double lat = 0;
+    public static double lon = 0;
 
+
+
+    Context mContext;
     RecyclerView mFirstPageRestaurantRecyclerView;
     RecyclerView.LayoutManager mFirstPageRestaurantRecyclerViewLayoutManager;
     RecyclerView.Adapter mfirstPageRestaurantAdapter;
@@ -44,11 +60,55 @@ public class MainActivity extends AppCompatActivity
     RecyclerView mFirstPageCafeRecyclerView;
     RecyclerView.LayoutManager mFirstPageCafeRecyclerViewLayoutManager;
     RecyclerView.Adapter mFirstPageCafeAdapter;
-
+    boolean run = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        locationDetector = new LocationDetector(this);
+        handler = new android.os.Handler();
+
+
+        // Thread for current location updates
+        mThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (run) {
+
+                    if (locationDetector.location != null) {
+                        handler.post(new Runnable() {
+                            public void run() {
+                                // Updates the current location
+                                mCurrentLocation = locationDetector.location;
+                                if (first) {
+                                    //getlocation
+                                    lat = mCurrentLocation.getLatitude();
+                                    lon = mCurrentLocation.getLongitude();
+                                    first = false;
+                                    Log.v("lat : ", String.valueOf(lat));
+                                    Log.v("lon : ", String.valueOf(lon));
+                                    createFirstPageRestaurantRecyclerView();
+                                    createFirstPageCafeRecyclerView();
+
+                                }
+                            }
+                        });
+                    }
+
+                    synchronized (this) {
+                        try {
+                            wait(1000);
+                        } catch (Exception e) {
+                        }
+                    }
+                }
+            }
+        });
+
+        mThread.start();
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -71,8 +131,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        createFirstPageRestaurantRecyclerView();
-        createFirstPageCafeRecyclerView();
 
 
 
@@ -84,13 +142,13 @@ public class MainActivity extends AppCompatActivity
         mFirstPageRestaurantRecyclerViewLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mFirstPageRestaurantRecyclerView.setLayoutManager(mFirstPageRestaurantRecyclerViewLayoutManager);
         APIInterface service = RestClient.getClient();
-        Call<SearchResult> call = service.getSearchResult("restaurant");
+        Call<SearchResult> call = service.getSearchResult("restaurant", lat, lon);
         call.enqueue(new Callback<SearchResult>() {
             @Override
             public void onResponse(Response<SearchResult> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
                     List<ResultModel> models = response.body().getData();
-                    mfirstPageRestaurantAdapter = new FirstPageRestaurantAdapter(MainActivity.this, models);
+                    mfirstPageRestaurantAdapter = new FirstPageRestaurantAdapter(MainActivity.this, models, lat, lon);
                     mFirstPageRestaurantRecyclerView.setAdapter(mfirstPageRestaurantAdapter);
                     Log.v("result cafe model", response.raw().toString());
                 }
@@ -113,12 +171,13 @@ public class MainActivity extends AppCompatActivity
 
 
         APIInterface service = RestClient.getClient();
-        Call<SearchResult> call = service.getSearchResult("cafe");
+        Call<SearchResult> call = service.getSearchResult("cafe", lat, lon);
         call.enqueue(new Callback<SearchResult>() {
             @Override
             public void onResponse(Response<SearchResult> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
-                    mFirstPageCafeAdapter = new FirstPageCafeAdapter(MainActivity.this, response.body().getData());
+                    List<ResultModel> models = response.body().getData();
+                    mFirstPageCafeAdapter = new FirstPageCafeAdapter(MainActivity.this, models, lat, lon);
                     mFirstPageCafeRecyclerView.setAdapter(mFirstPageCafeAdapter);
                     Log.v("result cafe model", response.raw().toString());
                 }
@@ -190,25 +249,10 @@ public class MainActivity extends AppCompatActivity
 
     public void goToSearchPage(View view){
         Intent intent = new Intent(this, SearchActivity.class);
+        intent.putExtra("lat", lat);
+        intent.putExtra("lon", lon);
+
         startActivity(intent);
     }
 
-    public void restaurantlistItemOnClick(View view){
-        TextView textView = (TextView)view.getRootView().findViewById(R.id.restaurant_id);
-        String _id =(String) textView.getText();
-
-        Intent intent = new Intent(this, DetailsActivity.class);
-        intent.putExtra("id",_id);
-        startActivity(intent);
-    }
-    public void cafelistItemOnClick(View view){
-        TextView textView = (TextView)view.getRootView().findViewById(R.id.cafe_id);
-        String _id = (String) textView.getText();
-
-
-
-        Intent intent = new Intent(this, DetailsActivity.class);
-        intent.putExtra("id",_id);
-        startActivity(intent);
-    }
 }

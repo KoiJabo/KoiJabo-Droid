@@ -15,7 +15,7 @@ public class DetailsModel {
     private Boolean IsOpenNow;
     @SerializedName("Distance")
     @Expose
-    private Integer Distance;
+    private Double Distance;
     @SerializedName("CostPerPerson")
     @Expose
     private Object CostPerPerson;
@@ -130,7 +130,7 @@ public class DetailsModel {
      * @return
      * The Distance
      */
-    public Integer getDistance() {
+    public Double getDistance() {
         return Distance;
     }
 
@@ -139,7 +139,7 @@ public class DetailsModel {
      * @param Distance
      * The Distance
      */
-    public void setDistance(Integer Distance) {
+    public void setDistance(Double Distance) {
         this.Distance = Distance;
     }
 
