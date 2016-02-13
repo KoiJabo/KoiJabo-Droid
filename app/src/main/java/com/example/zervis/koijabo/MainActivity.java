@@ -21,6 +21,7 @@ import com.example.zervis.koijabo.adapters.FirstPageCafeAdapter;
 import com.example.zervis.koijabo.adapters.FirstPageRestaurantAdapter;
 import com.example.zervis.koijabo.adapters.ResultPageAdapter;
 import com.example.zervis.koijabo.pojo.ResultModel;
+import com.example.zervis.koijabo.pojo.SearchResult;
 import com.example.zervis.koijabo.restcall.APIInterface;
 import com.example.zervis.koijabo.restcall.RestClient;
 
@@ -83,21 +84,22 @@ public class MainActivity extends AppCompatActivity
         mFirstPageRestaurantRecyclerViewLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mFirstPageRestaurantRecyclerView.setLayoutManager(mFirstPageRestaurantRecyclerViewLayoutManager);
         APIInterface service = RestClient.getClient();
-        Call<List<ResultModel>> call = service.getSearchResult("");
-        call.enqueue(new Callback<List<ResultModel>>() {
+        Call<SearchResult> call = service.getSearchResult("restaurant");
+        call.enqueue(new Callback<SearchResult>() {
             @Override
-            public void onResponse(Response<List<ResultModel>> response, Retrofit retrofit) {
+            public void onResponse(Response<SearchResult> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
-                    mfirstPageRestaurantAdapter = new FirstPageRestaurantAdapter(MainActivity.this, response.body());
+                    List<ResultModel> models = response.body().getData();
+                    mfirstPageRestaurantAdapter = new FirstPageRestaurantAdapter(MainActivity.this, models);
                     mFirstPageRestaurantRecyclerView.setAdapter(mfirstPageRestaurantAdapter);
-                    Log.w("result cafe model", response.raw().toString());
+                    Log.v("result cafe model", response.raw().toString());
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
                 // show some sort of dialog or something
-                Log.v("Failed cafe_model", "Failed");
+                Log.v("Failed restaurant_model", "Failed");
             }
         });
 
@@ -111,16 +113,14 @@ public class MainActivity extends AppCompatActivity
 
 
         APIInterface service = RestClient.getClient();
-        Call<List<ResultModel>> call = service.getSearchResult("");
-        call.enqueue(new Callback<List<ResultModel>>() {
+        Call<SearchResult> call = service.getSearchResult("cafe");
+        call.enqueue(new Callback<SearchResult>() {
             @Override
-            public void onResponse(Response<List<ResultModel>> response, Retrofit retrofit) {
+            public void onResponse(Response<SearchResult> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
-                    mFirstPageCafeAdapter = new FirstPageCafeAdapter(MainActivity.this, response.body());
+                    mFirstPageCafeAdapter = new FirstPageCafeAdapter(MainActivity.this, response.body().getData());
                     mFirstPageCafeRecyclerView.setAdapter(mFirstPageCafeAdapter);
-                    Log.w("result cafe model", response.raw().toString());
-
-
+                    Log.v("result cafe model", response.raw().toString());
                 }
             }
 

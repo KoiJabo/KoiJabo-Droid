@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.example.zervis.koijabo.adapters.ResultPageAdapter;
 import com.example.zervis.koijabo.pojo.ResultModel;
+import com.example.zervis.koijabo.pojo.SearchResult;
 import com.example.zervis.koijabo.restcall.APIInterface;
 import com.example.zervis.koijabo.restcall.RestClient;
 
@@ -41,14 +42,14 @@ public class ResultActivity extends Activity {
         String Value =  intent.getExtras().getString("Value");
 
         APIInterface service = RestClient.getClient();
-        Call<List<ResultModel>> call = service.getSearchResult(Value);
-        call.enqueue(new Callback<List<ResultModel>>() {
+        Call<SearchResult> call = service.getSearchResult(Value);
+        call.enqueue(new Callback<SearchResult>() {
             @Override
-            public void onResponse(Response<List<ResultModel>> response, Retrofit retrofit) {
+            public void onResponse(Response<SearchResult> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
-                    resultPageAdapter = new ResultPageAdapter(ResultActivity.this ,response.body());
+                    resultPageAdapter = new ResultPageAdapter(ResultActivity.this ,response.body().getData());
                     mResultPageRecyclerView.setAdapter(resultPageAdapter);
-                    Log.w("result model", response.raw().toString());
+                    Log.v("result model", response.raw().toString());
                 }
             }
 

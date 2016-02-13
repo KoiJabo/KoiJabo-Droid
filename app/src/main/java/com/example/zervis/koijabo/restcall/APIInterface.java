@@ -2,6 +2,7 @@ package com.example.zervis.koijabo.restcall;
 
 import com.example.zervis.koijabo.pojo.DetailsModel;
 import com.example.zervis.koijabo.pojo.ResultModel;
+import com.example.zervis.koijabo.pojo.SearchResult;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import retrofit.http.Query;
 public interface APIInterface {
 
     @GET("api/Restaurant/search")
-    Call<List<ResultModel>> getSearchResult(@Query("Value") String value);
+    Call<SearchResult> getSearchResult(@Query("value") String value);
 
     @GET("api/Restaurant/get")
     Call<DetailsModel> getDetails(@Query("id") String value);
