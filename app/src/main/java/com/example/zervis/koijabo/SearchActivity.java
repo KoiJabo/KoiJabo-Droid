@@ -29,16 +29,25 @@ import retrofit.Retrofit;
 
 public class SearchActivity extends AppCompatActivity {
 
+
     SearchSuggestion searchSuggestion;
 
     Context searchContext = this;
 
-    @Override
+
+    double lat=0;
+    double lon=0;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
         downloadSuggestions();
+
+        Intent intent = getIntent();
+        lat = intent.getExtras().getDouble("lat");
+        lon = intent.getExtras().getDouble("lon");
+
     }
 
     private void downloadSuggestions(){
@@ -105,6 +114,9 @@ public class SearchActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra("Value",Value);
+        intent.putExtra("lat", lat);
+        intent.putExtra("lon", lon);
+
         startActivity(intent);
     }
 }

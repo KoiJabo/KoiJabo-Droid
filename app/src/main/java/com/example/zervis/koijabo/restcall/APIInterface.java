@@ -21,7 +21,7 @@ import retrofit.http.Query;
 public interface APIInterface {
 
     @GET("api/Restaurant/search")
-    Call<SearchResult> getSearchResult(@Query("value") String value);
+    Call<SearchResult> getSearchResult(@Query("value") String value, @Query("lat") double lat, @Query("lon") double lon);
 
     @GET("api/Restaurant/get")
     Call<DetailsModel> getDetails(@Query("id") String value);

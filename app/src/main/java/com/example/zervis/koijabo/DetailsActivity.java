@@ -60,7 +60,7 @@ public class DetailsActivity extends Activity {
 
             @Override
             public void onFailure(Throwable t) {
-                // show some sort of dialog or something
+                // show some sort of locationdialog or something
                 Log.v("Failed detailsmodel", "Failed");
             }
         });

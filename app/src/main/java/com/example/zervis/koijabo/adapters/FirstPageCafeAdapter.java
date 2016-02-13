@@ -25,11 +25,15 @@ public class FirstPageCafeAdapter extends RecyclerView.Adapter<FirstPageCafeAdap
 
     List<ResultModel> items = new ArrayList<ResultModel>();
     Context mContext;
+    double lat=0;
+    double lon=0;
 
 
-    public  FirstPageCafeAdapter(Context context, List<ResultModel> resultModelList){
+    public  FirstPageCafeAdapter(Context context, List<ResultModel> resultModelList, double lat, double lon){
         this.items = resultModelList;
         this.mContext = context;
+        this.lat = lat;
+        this.lon = lon;
     }
     @Override
     public FirstPageCafeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -80,13 +84,16 @@ public class FirstPageCafeAdapter extends RecyclerView.Adapter<FirstPageCafeAdap
         @Override
         public void onClick(View v) {
 
-                int position = getAdapterPosition();
-                String id = items.get(position).getId();
+            int position = getAdapterPosition();
+            String id = items.get(position).getId();
 
-                Intent intent = new Intent(mContext, DetailsActivity.class);
-                intent.putExtra("id",id);
-                mContext.startActivity(intent);
+            Intent intent = new Intent(mContext, DetailsActivity.class);
+            intent.putExtra("id",id);
 
+            intent.putExtra("lat", lat);
+            intent.putExtra("lon", lon);
+
+            mContext.startActivity(intent);
         }
 
     }
