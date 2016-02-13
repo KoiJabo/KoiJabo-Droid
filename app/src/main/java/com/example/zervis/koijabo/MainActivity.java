@@ -1,9 +1,11 @@
 package com.example.zervis.koijabo;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,19 +19,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.zervis.koijabo.adapters.FirstPageCafeAdapter;
 import com.example.zervis.koijabo.adapters.FirstPageRestaurantAdapter;
-import com.example.zervis.koijabo.adapters.ResultPageAdapter;
+import com.example.zervis.koijabo.fragments.LocationDialogFragment;
 import com.example.zervis.koijabo.lib.LocationDetector;
 import com.example.zervis.koijabo.pojo.ResultModel;
 import com.example.zervis.koijabo.pojo.SearchResult;
 import com.example.zervis.koijabo.restcall.APIInterface;
 import com.example.zervis.koijabo.restcall.RestClient;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.api.GoogleApiClient;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -49,7 +51,9 @@ public class MainActivity extends AppCompatActivity
     public static double lat = 0;
     public static double lon = 0;
 
-
+    DialogFragment locationdialog;
+    boolean locationDetected;
+    //LoginFragment loginFragment;
 
     Context mContext;
     RecyclerView mFirstPageRestaurantRecyclerView;
@@ -68,46 +72,11 @@ public class MainActivity extends AppCompatActivity
 
         locationDetector = new LocationDetector(this);
         handler = new android.os.Handler();
-
-
-        // Thread for current location updates
-        mThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (run) {
-
-                    if (locationDetector.location != null) {
-                        handler.post(new Runnable() {
-                            public void run() {
-                                // Updates the current location
-                                mCurrentLocation = locationDetector.location;
-                                if (first) {
-                                    //getlocation
-                                    lat = mCurrentLocation.getLatitude();
-                                    lon = mCurrentLocation.getLongitude();
-                                    first = false;
-                                    Log.v("lat : ", String.valueOf(lat));
-                                    Log.v("lon : ", String.valueOf(lon));
-                                    createFirstPageRestaurantRecyclerView();
-                                    createFirstPageCafeRecyclerView();
-
-                                }
-                            }
-                        });
-                    }
-
-                    synchronized (this) {
-                        try {
-                            wait(1000);
-                        } catch (Exception e) {
-                        }
-                    }
-                }
-            }
-        });
-
-        mThread.start();
-
+        if (!isLocationSettingsOn()) {
+            locationdialog = new LocationDialogFragment();
+            locationdialog.show(getFragmentManager(), "Opening Location asking locationdialog");
+        }
+        else detectCurrentLocation();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -129,11 +98,69 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
 
+    private void detectCurrentLocation(){
+        // Thread for current location updates
+        mThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (run) {
 
+                    if (locationDetector.location != null) {
+                        handler.post(new Runnable() {
+                            public void run() {
+                                // Updates the current location
+                                mCurrentLocation = locationDetector.location;
+                                if (first) {
+                                    //getlocation
+                                    lat = mCurrentLocation.getLatitude();
+                                    lon = mCurrentLocation.getLongitude();
+                                    first = false;
+                                    Log.v("lat : ", String.valueOf(lat));
+                                    Log.v("lon : ", String.valueOf(lon));
+                                    createFirstPageRestaurantRecyclerView();
+                                    createFirstPageCafeRecyclerView();
+                                }
+                            }
+                        });
+                    }
+                    synchronized (this) {
+                        try {
+                            wait(1000);
+                        } catch (Exception e) {
+                        }
+                    }
+                }
+            }
+        });
 
+        mThread.start();
+    }
 
+    private boolean isLocationSettingsOn() {
+        LinearLayout locationNotDetectedText = (LinearLayout) findViewById(R.id.location_not_detected_text);
+        String gpsProvider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+        if (gpsProvider.equals("")) {
+            locationNotDetectedText.setVisibility(View.VISIBLE);
+            return false;
+        } else {
+            locationNotDetectedText.setVisibility(View.GONE);
+            return true;
+        }
+    }
 
+    public void openLocationSettings(View view) {
+        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        locationdialog.dismiss();
+        TextView textView = (TextView) findViewById(R.id.location_not_turn_on);
+        textView.setText("If you have turned on the location already, kindly restart the app now :)");
+        startActivity(intent);
+        if (isLocationSettingsOn())
+            detectCurrentLocation();
+    }
+    public void close_Location_dialog(View view){
+        locationdialog.dismiss();
     }
 
     private void createFirstPageRestaurantRecyclerView(){
@@ -156,7 +183,8 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onFailure(Throwable t) {
-                // show some sort of dialog or something
+                // show some sort of locationdialog or something
+                createFirstPageRestaurantRecyclerView();
                 Log.v("Failed restaurant_model", "Failed");
             }
         });
@@ -185,7 +213,8 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onFailure(Throwable t) {
-                // show some sort of dialog or something
+                // show some sort of locationdialog or something
+                createFirstPageCafeRecyclerView();
                 Log.v("Failed cafe_model", "Failed");
             }
         });
