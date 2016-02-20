@@ -110,4 +110,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    //Facebook AppId
+    <string name="facebook_app_id">1664705840451144</string>
+
+    //1664705840451144
 </resources>
