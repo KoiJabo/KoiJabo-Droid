@@ -15,6 +15,7 @@ import com.example.zervis.koijabo.adapters.TagsTrueAdapater;
 import com.example.zervis.koijabo.lib.Utility;
 import com.example.zervis.koijabo.pojo.DetailsModel;
 import com.example.zervis.koijabo.pojo.ResultModel;
+import com.example.zervis.koijabo.pojo.Review;
 import com.example.zervis.koijabo.restcall.APIInterface;
 import com.example.zervis.koijabo.restcall.RestClient;
 
@@ -47,6 +48,7 @@ public class DetailsActivity extends Activity {
         Intent intent = getIntent();
         String id =  intent.getExtras().getString("id");
         APIInterface service = RestClient.getClient();
+
         Call<DetailsModel> call = service.getDetails(id);
         call.enqueue(new Callback<DetailsModel>() {
             @Override
@@ -65,7 +67,52 @@ public class DetailsActivity extends Activity {
             }
         });
 
+        APIInterface service1 = RestClient.getClient();
+        Call<List<Review>> call1 = service1.getReviews(id);
+        call1.enqueue(new Callback<List<Review>>() {
+            @Override
+            public void onResponse(Response<List<Review>> response, Retrofit retrofit) {
+                List<Review> reviews = response.body();
 
+                try {
+                    TextView user1 = (TextView)findViewById(R.id.user1);
+                    user1.setText(reviews.get(0).getUserId());
+
+                    TextView review1 = (TextView)findViewById(R.id.review1);
+                    review1.setText(reviews.get(0).getUserId());
+                }
+
+                catch (Exception e){
+
+                }
+                try {
+                    TextView user2 = (TextView)findViewById(R.id.user1);
+                    user2.setText(reviews.get(1).getUserId());
+
+                    TextView review2 = (TextView)findViewById(R.id.review1);
+                    review2.setText(reviews.get(1).getUserId());
+                }
+
+                catch (Exception e){
+
+                }
+                try{
+                    TextView user3 = (TextView)findViewById(R.id.user1);
+                    user3.setText(reviews.get(2).getUserId());
+
+                    TextView review3 = (TextView)findViewById(R.id.review1);
+                    review3.setText(reviews.get(2).getUserId());
+                }
+                catch (Exception e){
+
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
 
 
     }

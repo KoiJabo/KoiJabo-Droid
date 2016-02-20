@@ -100,14 +100,12 @@
     <string name="title_activity_result">ResultActivity</string>
 
 
-
     <string name="dialog_detect_location_title">Location Services</string>
     <string name="dialog_detect_location_text">We can\'t find your location either your location detection is switched off or you are somewhere where you phone\'s GPS can\'t work. Please turn on your location in case it is turned off, or go outside</string>
     <string name="dialog_detect_location_positive">Alright</string>
     <string name="dialog_detect_location_negative">Nope</string>
     <string name="location_settings_open_request">Turn on location Services to see nearest events</string>
     <string name="button_location_retry">Retry</string>
-
 
 
     <!-- TODO: Remove or change this placeholder text -->
