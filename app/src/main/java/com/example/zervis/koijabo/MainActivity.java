@@ -25,11 +25,18 @@ import android.widget.TextView;
 import com.example.zervis.koijabo.adapters.FirstPageCafeAdapter;
 import com.example.zervis.koijabo.adapters.FirstPageRestaurantAdapter;
 import com.example.zervis.koijabo.fragments.LocationDialogFragment;
+import com.example.zervis.koijabo.fragments.LogInDialog;
 import com.example.zervis.koijabo.lib.LocationDetector;
 import com.example.zervis.koijabo.pojo.ResultModel;
 import com.example.zervis.koijabo.pojo.SearchResult;
 import com.example.zervis.koijabo.restcall.APIInterface;
 import com.example.zervis.koijabo.restcall.RestClient;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import org.w3c.dom.Text;
 
@@ -53,6 +60,8 @@ public class MainActivity extends AppCompatActivity
 
     DialogFragment locationdialog;
     boolean locationDetected;
+
+    DialogFragment loginDialog;
     //LoginFragment loginFragment;
 
     Context mContext;
@@ -65,10 +74,19 @@ public class MainActivity extends AppCompatActivity
     RecyclerView.LayoutManager mFirstPageCafeRecyclerViewLayoutManager;
     RecyclerView.Adapter mFirstPageCafeAdapter;
     boolean run = true;
+
+    private TextView info;
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        loginDialog = new LogInDialog();
+        loginDialog.show(getFragmentManager(), "Login dialog");
 
         locationDetector = new LocationDetector(this);
         handler = new android.os.Handler();
@@ -169,7 +187,7 @@ public class MainActivity extends AppCompatActivity
         mFirstPageRestaurantRecyclerViewLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mFirstPageRestaurantRecyclerView.setLayoutManager(mFirstPageRestaurantRecyclerViewLayoutManager);
         APIInterface service = RestClient.getClient();
-        Call<SearchResult> call = service.getSearchResult("restaurant", lat, lon);
+        Call<SearchResult> call = service.getSearchResult("", lat, lon);
         call.enqueue(new Callback<SearchResult>() {
             @Override
             public void onResponse(Response<SearchResult> response, Retrofit retrofit) {
