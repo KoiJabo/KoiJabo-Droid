@@ -35,11 +35,11 @@ public class AddReviewActivity extends Activity {
     TextView generalSeekbarValue = null;
     TextView textReview = null;
 
-    int foodRating = 0;
-    int serviceRating = 0;
-    int ambienceRating = 0;
-    int cleanlinessRating = 0;
-    int generalRating = 0;
+    int foodRating = 2;
+    int serviceRating = 2;
+    int ambienceRating = 2;
+    int cleanlinessRating = 2;
+    int generalRating = 2;
 
     Review reviewSubmit;
 
@@ -68,6 +68,17 @@ public class AddReviewActivity extends Activity {
         reviewSubmit.setTips("");
         reviewSubmit.setVerified(false);
 
+        String foodRatingValue = SeekbarUtility.foodSeekbarValue(foodRating);
+        foodSeekbarValue.setText(foodRatingValue);
+        String serviceRatingValue = SeekbarUtility.serviceSeekbarValue(serviceRating);
+        serviceSeekbarValue.setText(serviceRatingValue);
+        String ambienceRatingValue = SeekbarUtility.ambienceSeekbarValue(ambienceRating);
+        ambienceSeekbarValue.setText(ambienceRatingValue);
+        String cleanlinessRatingValue = SeekbarUtility.cleanlinessSeekbarValue(cleanlinessRating);
+        cleanlinessSeekbarValue.setText(cleanlinessRatingValue);
+        String generalRatingValue = SeekbarUtility.generalSeekbarValue(generalRating);
+        generalSeekbarValue.setText(generalRatingValue);
+
     }
 
     @Override
@@ -84,25 +95,7 @@ public class AddReviewActivity extends Activity {
         reviewSubmit.setFbUserName(name);
         reviewSubmit.setFbUserId(fbUserId);
 
-        foodSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                foodRating = progress;
-                String foodRatingValue = SeekbarUtility.foodSeekbarValue(foodRating);
-                foodSeekbarValue.setText(foodRatingValue);
-                reviewSubmit.setFoodRating(foodRating);
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
 
         foodSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -200,32 +193,6 @@ public class AddReviewActivity extends Activity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
-            }
-        });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.review_submit_button);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-
-                reviewSubmit.setTextReview(textReview.getText().toString());
-
-                APIInterface service = RestClient.getClient();
-                String json = new Gson().toJson(reviewSubmit);
-                Call<Review> call = service.submitReview(reviewSubmit);
-                call.enqueue(new Callback<Review>() {
-                    @Override
-                    public void onResponse(Response<Review> response, Retrofit retrofit) {
-                        Snackbar.make(view, "Review Submit successfull", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                    }
-
-                    @Override
-                    public void onFailure(Throwable t) {
-                        Snackbar.make(view, "Review Submit not successfull", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                    }
-                });
             }
         });
     }

@@ -1,13 +1,20 @@
 package com.example.zervis.koijabo;
 
+import android.annotation.TargetApi;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +34,8 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +59,7 @@ public class DetailsActivity extends Activity {
     private LoginButton loginButton;
     private CallbackManager callbackManager;
     private ProfileTracker mProfileTracker;
-
+    Context context;
 
     DetailsModel detailsModel = new DetailsModel();
     @Override
@@ -58,6 +67,7 @@ public class DetailsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        context = this;
         Intent intent = getIntent();
         String id =  intent.getExtras().getString("id");
 
@@ -131,6 +141,10 @@ public class DetailsActivity extends Activity {
     }
 
     private void assignValues(DetailsModel detailsModel) {
+
+        //find out a way to load layout background from url
+        final RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.details_page_background);
+
 
         TextView title = (TextView)findViewById(R.id.details_page_heading_title);
         title.setText(detailsModel.getName());
