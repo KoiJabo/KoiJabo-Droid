@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity
     private LoginButton loginButton;
     private CallbackManager callbackManager;
     private ProfileTracker mProfileTracker;
-//    private Profile profile;
     private ProfilePictureView profilePictureView;
     private TextView userName;
     @Override

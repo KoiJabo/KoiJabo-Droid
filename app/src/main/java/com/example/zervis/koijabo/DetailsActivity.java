@@ -1,5 +1,6 @@
 package com.example.zervis.koijabo;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -8,14 +9,24 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zervis.koijabo.adapters.TagsFalseAdapter;
 import com.example.zervis.koijabo.adapters.TagsTrueAdapater;
+import com.example.zervis.koijabo.fragments.LogInDialog;
 import com.example.zervis.koijabo.lib.Utility;
 import com.example.zervis.koijabo.pojo.DetailsModel;
 import com.example.zervis.koijabo.pojo.Review;
 import com.example.zervis.koijabo.restcall.APIInterface;
 import com.example.zervis.koijabo.restcall.RestClient;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.facebook.login.widget.ProfilePictureView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +45,12 @@ public class DetailsActivity extends Activity {
     RecyclerView mTagsFalseRecyclerView;
     RecyclerView.LayoutManager mTagsFalseRecyclerLayoutManager;
     RecyclerView.Adapter mTagsFalseRecyclerViewAdapter;
+
+    DialogFragment loginDialog;
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
+    private ProfileTracker mProfileTracker;
+
 
     DetailsModel detailsModel = new DetailsModel();
     @Override
@@ -157,17 +174,67 @@ public class DetailsActivity extends Activity {
         mTagsFalseRecyclerView.setLayoutManager(mTagsFalseRecyclerLayoutManager);
         mTagsFalseRecyclerViewAdapter = new TagsFalseAdapter(detailsModel.getTagsFalse());
         mTagsFalseRecyclerView.setAdapter(mTagsFalseRecyclerViewAdapter);
-
-
-
-
     }
 
     public void goToAddReviewPage(View view){
-        Intent intent = new Intent(this, AddReviewActivity.class);
 
-        String id = detailsModel.getId();
-        intent.putExtra("id",id);
-        startActivity(intent);
+        if (KoiJaboApplication.profile!=null){
+            Intent intent = new Intent(this, AddReviewActivity.class);
+            String id = detailsModel.getId();
+            intent.putExtra("id",id);
+            startActivity(intent);
+        } else{
+            loginDialog = new LogInDialog();
+            loginDialog.show(getFragmentManager(), "before review log in user");
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+    public void facebookLogin(View view){
+        callbackManager = CallbackManager.Factory.create();
+        loginButton = (LoginButton)view.findViewById(R.id.login_button);
+        loginButton.setReadPermissions("user_friends","public_profile", "email");
+
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                loginDialog.dismiss();
+
+
+                if(Profile.getCurrentProfile() == null) {
+                    mProfileTracker = new ProfileTracker() {
+                        @Override
+                        protected void onCurrentProfileChanged(Profile profile1, Profile profile2) {
+                            // profile2 is the new profile
+                            Log.v("facebook - profile", profile2.getFirstName());
+                            mProfileTracker.stopTracking();
+                            KoiJaboApplication.profile = profile2;
+
+                        }
+                    };
+                    mProfileTracker.startTracking();
+                }
+                else {
+                    KoiJaboApplication.profile = Profile.getCurrentProfile();
+                    
+                    Log.v("facebook - profile", KoiJaboApplication.profile.getFirstName());
+                }
+
+                Toast.makeText(getApplicationContext(), "You have been logged in through facebook", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+            }
+        });
     }
 }
