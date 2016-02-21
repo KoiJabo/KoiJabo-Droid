@@ -19,8 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.zervis.koijabo.adapters.TagsFalseAdapter;
-import com.example.zervis.koijabo.adapters.TagsTrueAdapater;
+
 import com.example.zervis.koijabo.fragments.LogInDialog;
 import com.example.zervis.koijabo.lib.Utility;
 import com.example.zervis.koijabo.pojo.DetailsModel;
