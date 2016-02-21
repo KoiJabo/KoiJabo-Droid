@@ -9,17 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.zervis.koijabo.adapters.FirstPageRestaurantAdapter;
 import com.example.zervis.koijabo.adapters.TagsFalseAdapter;
 import com.example.zervis.koijabo.adapters.TagsTrueAdapater;
 import com.example.zervis.koijabo.lib.Utility;
 import com.example.zervis.koijabo.pojo.DetailsModel;
-import com.example.zervis.koijabo.pojo.ResultModel;
 import com.example.zervis.koijabo.pojo.Review;
 import com.example.zervis.koijabo.restcall.APIInterface;
 import com.example.zervis.koijabo.restcall.RestClient;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +43,8 @@ public class DetailsActivity extends Activity {
 
         Intent intent = getIntent();
         String id =  intent.getExtras().getString("id");
-        APIInterface service = RestClient.getClient();
 
+        APIInterface service = RestClient.getClient();
         Call<DetailsModel> call = service.getDetails(id);
         call.enqueue(new Callback<DetailsModel>() {
             @Override
@@ -76,32 +72,32 @@ public class DetailsActivity extends Activity {
 
                 try {
                     TextView user1 = (TextView)findViewById(R.id.user1);
-                    user1.setText(reviews.get(0).getUserId());
+                    user1.setText(reviews.get(0).getFbUserName());
 
                     TextView review1 = (TextView)findViewById(R.id.review1);
-                    review1.setText(reviews.get(0).getUserId());
+                    review1.setText(reviews.get(0).getTextReview());
                 }
 
                 catch (Exception e){
 
                 }
                 try {
-                    TextView user2 = (TextView)findViewById(R.id.user1);
-                    user2.setText(reviews.get(1).getUserId());
+                    TextView user2 = (TextView)findViewById(R.id.user2);
+                    user2.setText(reviews.get(1).getFbUserName());
 
-                    TextView review2 = (TextView)findViewById(R.id.review1);
-                    review2.setText(reviews.get(1).getUserId());
+                    TextView review2 = (TextView)findViewById(R.id.review2);
+                    review2.setText(reviews.get(1).getTextReview());
                 }
 
                 catch (Exception e){
 
                 }
                 try{
-                    TextView user3 = (TextView)findViewById(R.id.user1);
-                    user3.setText(reviews.get(2).getUserId());
+                    TextView user3 = (TextView)findViewById(R.id.user3);
+                    user3.setText(reviews.get(2).getFbUserName());
 
-                    TextView review3 = (TextView)findViewById(R.id.review1);
-                    review3.setText(reviews.get(2).getUserId());
+                    TextView review3 = (TextView)findViewById(R.id.review3);
+                    review3.setText(reviews.get(2).getTextReview());
                 }
                 catch (Exception e){
 

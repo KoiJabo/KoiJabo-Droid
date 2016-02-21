@@ -89,7 +89,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_below="@+id/list_item_distance"
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="12dp"
                         android:layout_marginTop="5dp"
@@ -463,13 +462,13 @@
                             android:layout_height="wrap_content"
                             android:textSize="18dp"
                             android:textStyle="bold"
-                            android:text="aijsdiajsdijasdijasidjasid" />
+                            android:text="" />
 
                         <TextView
                             android:id="@+id/review1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="The restaurant asdfsdfadsfasdfadsfasdfsda asdfasdfadsfasdfsdfadsfadsf asdfasdfasdfdsfsfdfsdfis too good" />
+                            android:text="" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
@@ -488,13 +487,13 @@
                             android:layout_height="wrap_content"
                             android:textSize="18dp"
                             android:textStyle="bold"
-                            android:text="aijsdiajsdijasdijasidjasid" />
+                            android:text="" />
 
                         <TextView
                             android:id="@+id/review2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="The restaurant asdfsdfadsfasdfadsfasdfsda asdfasdfadsfasdfsdfadsfadsf asdfasdfasdfdsfsfdfsdfis too good" />
+                            android:text="" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
@@ -513,13 +512,13 @@
                             android:layout_height="wrap_content"
                             android:textSize="18dp"
                             android:textStyle="bold"
-                            android:text="aijsdiajsdijasdijasidjasid" />
+                            android:text="" />
 
                         <TextView
                             android:id="@+id/review3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="The restaurant asdfsdfadsfasdfadsfasdfsda asdfasdfadsfasdfsdfadsfadsf asdfasdfasdfdsfsfdfsdfis too good" />
+                            android:text="" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
             </LinearLayout>

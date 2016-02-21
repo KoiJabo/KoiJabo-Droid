@@ -1,18 +1,40 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.zervis.koijabo.fragments.LogInDialog">
 
     <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SKIP"
+            android:textColor="@color/cardview_dark_background"
+            android:background="@color/cardview_light_background"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:padding="20dp"
+            android:onClick="skipLogin"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="KOI\nJABO"
+            android:textSize="80dp"
+            android:gravity="center"/>
+    </RelativeLayout>
+
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="100dp"
         android:onClick="facebookLogin"/>
 
-</FrameLayout>
+</LinearLayout>

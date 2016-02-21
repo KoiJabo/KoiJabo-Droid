@@ -2,15 +2,11 @@ package com.example.zervis.koijabo.pojo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 /**
- * Created by Zarvis on 16/02/2016.
+ * Created by Zarvis on 13/02/2016.
  */
 public class Review {
 
-    @SerializedName("_id")
-    @Expose
-    private String Id;
     @SerializedName("FoodRating")
     @Expose
     private Integer FoodRating;
@@ -20,45 +16,30 @@ public class Review {
     @SerializedName("AmbienceRating")
     @Expose
     private Integer AmbienceRating;
-    @SerializedName("CleanlinesRating")
-    @Expose
-    private Integer CleanlinesRating;
     @SerializedName("OverAllRating")
     @Expose
     private Integer OverAllRating;
+    @SerializedName("CleanlinesRating")
+    @Expose
+    private Integer CleanlinesRating;
     @SerializedName("TextReview")
     @Expose
     private String TextReview;
     @SerializedName("Tips")
     @Expose
     private String Tips;
-    @SerializedName("Verified")
+    @SerializedName("FbUserId")
     @Expose
-    private Boolean Verified;
-    @SerializedName("UserId")
+    private String FbUserId;
+    @SerializedName("FbUserName")
     @Expose
-    private String UserId;
+    private String FbUserName;
     @SerializedName("RestaurantId")
     @Expose
     private String RestaurantId;
-
-    /**
-     *
-     * @return
-     * The Id
-     */
-    public String getId() {
-        return Id;
-    }
-
-    /**
-     *
-     * @param Id
-     * The _id
-     */
-    public void setId(String Id) {
-        this.Id = Id;
-    }
+    @SerializedName("Verified")
+    @Expose
+    private Boolean Verified;
 
     /**
      *
@@ -117,24 +98,6 @@ public class Review {
     /**
      *
      * @return
-     * The CleanlinesRating
-     */
-    public Integer getCleanlinesRating() {
-        return CleanlinesRating;
-    }
-
-    /**
-     *
-     * @param CleanlinesRating
-     * The CleanlinesRating
-     */
-    public void setCleanlinesRating(Integer CleanlinesRating) {
-        this.CleanlinesRating = CleanlinesRating;
-    }
-
-    /**
-     *
-     * @return
      * The OverAllRating
      */
     public Integer getOverAllRating() {
@@ -148,6 +111,24 @@ public class Review {
      */
     public void setOverAllRating(Integer OverAllRating) {
         this.OverAllRating = OverAllRating;
+    }
+
+    /**
+     *
+     * @return
+     * The CleanlinesRating
+     */
+    public Integer getCleanlinesRating() {
+        return CleanlinesRating;
+    }
+
+    /**
+     *
+     * @param CleanlinesRating
+     * The CleanlinesRating
+     */
+    public void setCleanlinesRating(Integer CleanlinesRating) {
+        this.CleanlinesRating = CleanlinesRating;
     }
 
     /**
@@ -189,37 +170,36 @@ public class Review {
     /**
      *
      * @return
-     * The Verified
+     * The FbUserId
      */
-    public Boolean getVerified() {
-        return Verified;
+    public String getFbUserId() {
+        return FbUserId;
     }
 
     /**
      *
-     * @param Verified
-     * The Verified
+     * @param FbUserId
+     * The UserId
      */
-    public void setVerified(Boolean Verified) {
-        this.Verified = Verified;
+    public void setFbUserId(String FbUserId) {
+        this.FbUserId = FbUserId;
     }
-
     /**
      *
      * @return
-     * The UserId
+     * The FbUserName
      */
-    public String getUserId() {
-        return UserId;
+    public String getFbUserName() {
+        return FbUserName;
     }
 
     /**
      *
-     * @param UserId
+     * @param FbUserName
      * The UserId
      */
-    public void setUserId(String UserId) {
-        this.UserId = UserId;
+    public void setFbUserName(String FbUserName) {
+        this.FbUserName = FbUserName;
     }
 
     /**
@@ -238,5 +218,23 @@ public class Review {
      */
     public void setRestaurantId(String RestaurantId) {
         this.RestaurantId = RestaurantId;
+    }
+
+    /**
+     *
+     * @return
+     * The Verified
+     */
+    public Boolean getVerified() {
+        return Verified;
+    }
+
+    /**
+     *
+     * @param Verified
+     * The Verified
+     */
+    public void setVerified(Boolean Verified) {
+        this.Verified = Verified;
     }
 }

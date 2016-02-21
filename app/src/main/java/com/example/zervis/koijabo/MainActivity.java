@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity
     private LoginButton loginButton;
     private CallbackManager callbackManager;
     private ProfileTracker mProfileTracker;
-    private Profile profile;
+//    private Profile profile;
     private ProfilePictureView profilePictureView;
     private TextView userName;
     @Override
@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
 
 
         detectLocation();
@@ -141,6 +140,7 @@ public class MainActivity extends AppCompatActivity
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                loginDialog.dismiss();
                 profilePictureView = (ProfilePictureView)findViewById(R.id.user_profile_picture);
                 userName = (TextView)findViewById(R.id.user_name);
                 if(Profile.getCurrentProfile() == null) {
@@ -150,18 +150,18 @@ public class MainActivity extends AppCompatActivity
                             // profile2 is the new profile
                             Log.v("facebook - profile", profile2.getFirstName());
                             mProfileTracker.stopTracking();
-                            profile = profile2;
-                            userName.setText(profile.getName());
-                            profilePictureView.setProfileId(profile.getId());
+                            KoiJaboApplication.profile = profile2;
+                            userName.setText(KoiJaboApplication.profile.getName());
+                            profilePictureView.setProfileId(KoiJaboApplication.profile.getId());
                         }
                     };
                     mProfileTracker.startTracking();
                 }
                 else {
-                    profile = Profile.getCurrentProfile();
-                    userName.setText(profile.getName());
-                    profilePictureView.setProfileId(profile.getId());
-                    Log.v("facebook - profile", profile.getFirstName());
+                    KoiJaboApplication.profile = Profile.getCurrentProfile();
+                    userName.setText(KoiJaboApplication.profile.getName());
+                    profilePictureView.setProfileId(KoiJaboApplication.profile.getId());
+                    Log.v("facebook - profile", KoiJaboApplication.profile.getFirstName());
                 }
 
                 Toast.makeText(getApplicationContext(), "You have been logged in through facebook", Toast.LENGTH_LONG).show();
@@ -317,12 +317,12 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
 
-        profile = Profile.getCurrentProfile();
-        if (profile!= null){
+        KoiJaboApplication.profile = Profile.getCurrentProfile();
+        if (KoiJaboApplication.profile!= null){
             profilePictureView = (ProfilePictureView)findViewById(R.id.user_profile_picture);
             userName = (TextView)findViewById(R.id.user_name);
-            userName.setText(profile.getName());
-            profilePictureView.setProfileId(profile.getId());
+            userName.setText(KoiJaboApplication.profile.getName());
+            profilePictureView.setProfileId(KoiJaboApplication.profile.getId());
         } else {
             loginDialog = new LogInDialog();
             loginDialog.show(getFragmentManager(), "Login dialog");
@@ -360,9 +360,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_log) {
-            if (profile!=null){
+            if (KoiJaboApplication.profile!=null){
                 LoginManager.getInstance().logOut();
-                profile = null;
+                KoiJaboApplication.profile = null;
                 userName.setText(null);
                 profilePictureView.setProfileId(null);
                 Toast.makeText(getApplicationContext(), "You have been logged out", Toast.LENGTH_LONG).show();
@@ -380,6 +380,9 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void skipLogin(View view){
+        loginDialog.dismiss();
+    }
     public void goToSearchPage(View view){
         Intent intent = new Intent(this, SearchActivity.class);
         intent.putExtra("lat", lat);

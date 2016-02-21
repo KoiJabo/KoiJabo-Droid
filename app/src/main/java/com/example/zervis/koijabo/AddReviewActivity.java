@@ -10,8 +10,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.zervis.koijabo.lib.SeekbarUtility;
-import com.example.zervis.koijabo.pojo.ReviewSubmit;
-import com.example.zervis.koijabo.pojo.SearchResult;
+import com.example.zervis.koijabo.pojo.Review;
 import com.example.zervis.koijabo.restcall.APIInterface;
 import com.example.zervis.koijabo.restcall.RestClient;
 import com.google.gson.Gson;
@@ -42,7 +41,7 @@ public class AddReviewActivity extends Activity {
     int cleanlinessRating = 0;
     int generalRating = 0;
 
-    ReviewSubmit reviewSubmit;
+    Review reviewSubmit;
 
     public void initializeVariables(){
         foodSeekbar = (SeekBar) findViewById(R.id.food_seekBar);
@@ -58,7 +57,7 @@ public class AddReviewActivity extends Activity {
         generalSeekbarValue = (TextView) findViewById(R.id.generalRating_seekBar_value);
         textReview = (TextView) findViewById(R.id.text_review);
 
-        reviewSubmit = new ReviewSubmit();
+        reviewSubmit = new Review();
 
         reviewSubmit.setFoodRating(0);
         reviewSubmit.setAmbienceRating(0);
@@ -79,7 +78,11 @@ public class AddReviewActivity extends Activity {
         Intent intent = getIntent();
         String restaurantId =  intent.getExtras().getString("id");
         reviewSubmit.setRestaurantId(restaurantId);
-        reviewSubmit.setUserId("Tareq");
+
+        String name =  KoiJaboApplication.profile.getName();
+        String fbUserId = KoiJaboApplication.profile.getId();
+        reviewSubmit.setFbUserName(name);
+        reviewSubmit.setFbUserId(fbUserId);
 
         foodSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -209,10 +212,10 @@ public class AddReviewActivity extends Activity {
 
                 APIInterface service = RestClient.getClient();
                 String json = new Gson().toJson(reviewSubmit);
-                Call<ReviewSubmit> call = service.submitReview(reviewSubmit);
-                call.enqueue(new Callback<ReviewSubmit>() {
+                Call<Review> call = service.submitReview(reviewSubmit);
+                call.enqueue(new Callback<Review>() {
                     @Override
-                    public void onResponse(Response<ReviewSubmit> response, Retrofit retrofit) {
+                    public void onResponse(Response<Review> response, Retrofit retrofit) {
                         Snackbar.make(view, "Review Submit successfull", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
@@ -233,10 +236,10 @@ public class AddReviewActivity extends Activity {
 
         APIInterface service = RestClient.getClient();
         String json = new Gson().toJson(reviewSubmit);
-        Call<ReviewSubmit> call = service.submitReview(reviewSubmit);
-        call.enqueue(new Callback<ReviewSubmit>() {
+        Call<Review> call = service.submitReview(reviewSubmit);
+        call.enqueue(new Callback<Review>() {
             @Override
-            public void onResponse(Response<ReviewSubmit> response, Retrofit retrofit) {
+            public void onResponse(Response<Review> response, Retrofit retrofit) {
                 Snackbar.make(view, "Review Submit successfull", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
