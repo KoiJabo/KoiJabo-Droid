@@ -40,6 +40,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
@@ -163,7 +164,7 @@ public class MainActivity extends AppCompatActivity
                     Log.v("facebook - profile", profile.getFirstName());
                 }
 
-                Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "You have been logged in through facebook", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -358,8 +359,18 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.nav_log) {
+            if (profile!=null){
+                LoginManager.getInstance().logOut();
+                profile = null;
+                userName.setText(null);
+                profilePictureView.setProfileId(null);
+                Toast.makeText(getApplicationContext(), "You have been logged out", Toast.LENGTH_LONG).show();
+            }
+            else {
+                loginDialog = new LogInDialog();
+                loginDialog.show(getFragmentManager(), "Login dialog");
+            }
         } else if (id == R.id.nav_send) {
 
         }
