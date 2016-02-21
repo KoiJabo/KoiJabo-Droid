@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by Zarvis on 13/02/2016.
  */
-public class ReviewSubmit {
+public class Review {
 
     @SerializedName("FoodRating")
     @Expose
@@ -28,9 +28,12 @@ public class ReviewSubmit {
     @SerializedName("Tips")
     @Expose
     private String Tips;
-    @SerializedName("UserId")
+    @SerializedName("FbUserId")
     @Expose
-    private String UserId;
+    private String FbUserId;
+    @SerializedName("FbUserName")
+    @Expose
+    private String FbUserName;
     @SerializedName("RestaurantId")
     @Expose
     private String RestaurantId;
@@ -167,19 +170,36 @@ public class ReviewSubmit {
     /**
      *
      * @return
-     * The UserId
+     * The FbUserId
      */
-    public String getUserId() {
-        return UserId;
+    public String getFbUserId() {
+        return FbUserId;
     }
 
     /**
      *
-     * @param UserId
+     * @param FbUserId
      * The UserId
      */
-    public void setUserId(String UserId) {
-        this.UserId = UserId;
+    public void setFbUserId(String FbUserId) {
+        this.FbUserId = FbUserId;
+    }
+    /**
+     *
+     * @return
+     * The FbUserName
+     */
+    public String getFbUserName() {
+        return FbUserName;
+    }
+
+    /**
+     *
+     * @param FbUserName
+     * The UserId
+     */
+    public void setFbUserName(String FbUserName) {
+        this.FbUserName = FbUserName;
     }
 
     /**

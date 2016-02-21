@@ -10,7 +10,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,15 +23,27 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zervis.koijabo.adapters.FirstPageCafeAdapter;
 import com.example.zervis.koijabo.adapters.FirstPageRestaurantAdapter;
 import com.example.zervis.koijabo.fragments.LocationDialogFragment;
+import com.example.zervis.koijabo.fragments.LogInDialog;
 import com.example.zervis.koijabo.lib.LocationDetector;
 import com.example.zervis.koijabo.pojo.ResultModel;
 import com.example.zervis.koijabo.pojo.SearchResult;
 import com.example.zervis.koijabo.restcall.APIInterface;
 import com.example.zervis.koijabo.restcall.RestClient;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.facebook.login.widget.ProfilePictureView;
 
 import org.w3c.dom.Text;
 
@@ -53,6 +67,8 @@ public class MainActivity extends AppCompatActivity
 
     DialogFragment locationdialog;
     boolean locationDetected;
+
+    DialogFragment loginDialog;
     //LoginFragment loginFragment;
 
     Context mContext;
@@ -65,18 +81,20 @@ public class MainActivity extends AppCompatActivity
     RecyclerView.LayoutManager mFirstPageCafeRecyclerViewLayoutManager;
     RecyclerView.Adapter mFirstPageCafeAdapter;
     boolean run = true;
+
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
+    private ProfileTracker mProfileTracker;
+    private ProfilePictureView profilePictureView;
+    private TextView userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        locationDetector = new LocationDetector(this);
-        handler = new android.os.Handler();
-        if (!isLocationSettingsOn()) {
-            locationdialog = new LocationDialogFragment();
-            locationdialog.show(getFragmentManager(), "Opening Location asking locationdialog");
-        }
-        else detectCurrentLocation();
+
+        detectLocation();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -98,8 +116,72 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+
+    }
+    private void detectLocation(){
+        locationDetector = new LocationDetector(this);
+        handler = new android.os.Handler();
+        if (!isLocationSettingsOn()) {
+            locationdialog = new LocationDialogFragment();
+            locationdialog.show(getFragmentManager(), "Opening Location asking locationdialog");
+        }
+        else detectCurrentLocation();
     }
 
+    public void facebookLogin(View view){
+        callbackManager = CallbackManager.Factory.create();
+        loginButton = (LoginButton)view.findViewById(R.id.login_button);
+        loginButton.setReadPermissions("user_friends","public_profile", "email");
+
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                loginDialog.dismiss();
+                profilePictureView = (ProfilePictureView)findViewById(R.id.user_profile_picture);
+                userName = (TextView)findViewById(R.id.user_name);
+                if(Profile.getCurrentProfile() == null) {
+                    mProfileTracker = new ProfileTracker() {
+                        @Override
+                        protected void onCurrentProfileChanged(Profile profile1, Profile profile2) {
+                            // profile2 is the new profile
+                            Log.v("facebook - profile", profile2.getFirstName());
+                            mProfileTracker.stopTracking();
+                            KoiJaboApplication.profile = profile2;
+                            userName.setText(KoiJaboApplication.profile.getName());
+                            profilePictureView.setProfileId(KoiJaboApplication.profile.getId());
+                        }
+                    };
+                    mProfileTracker.startTracking();
+                }
+                else {
+                    KoiJaboApplication.profile = Profile.getCurrentProfile();
+                    userName.setText(KoiJaboApplication.profile.getName());
+                    profilePictureView.setProfileId(KoiJaboApplication.profile.getId());
+                    Log.v("facebook - profile", KoiJaboApplication.profile.getFirstName());
+                }
+
+                Toast.makeText(getApplicationContext(), "You have been logged in through facebook", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
     private void detectCurrentLocation(){
         // Thread for current location updates
         mThread = new Thread(new Runnable() {
@@ -169,7 +251,7 @@ public class MainActivity extends AppCompatActivity
         mFirstPageRestaurantRecyclerViewLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mFirstPageRestaurantRecyclerView.setLayoutManager(mFirstPageRestaurantRecyclerViewLayoutManager);
         APIInterface service = RestClient.getClient();
-        Call<SearchResult> call = service.getSearchResult("restaurant", lat, lon);
+        Call<SearchResult> call = service.getSearchResult("", lat, lon);
         call.enqueue(new Callback<SearchResult>() {
             @Override
             public void onResponse(Response<SearchResult> response, Retrofit retrofit) {
@@ -229,13 +311,24 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
-//
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        KoiJaboApplication.profile = Profile.getCurrentProfile();
+        if (KoiJaboApplication.profile!= null){
+            profilePictureView = (ProfilePictureView)findViewById(R.id.user_profile_picture);
+            userName = (TextView)findViewById(R.id.user_name);
+            userName.setText(KoiJaboApplication.profile.getName());
+            profilePictureView.setProfileId(KoiJaboApplication.profile.getId());
+        } else {
+            loginDialog = new LogInDialog();
+            loginDialog.show(getFragmentManager(), "Login dialog");
+        }
+        return true;
+    }
+
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
 //        // Handle action bar item clicks here. The action bar will
@@ -265,8 +358,18 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.nav_log) {
+            if (KoiJaboApplication.profile!=null){
+                LoginManager.getInstance().logOut();
+                KoiJaboApplication.profile = null;
+                userName.setText(null);
+                profilePictureView.setProfileId(null);
+                Toast.makeText(getApplicationContext(), "You have been logged out", Toast.LENGTH_LONG).show();
+            }
+            else {
+                loginDialog = new LogInDialog();
+                loginDialog.show(getFragmentManager(), "Login dialog");
+            }
         } else if (id == R.id.nav_send) {
 
         }
@@ -276,6 +379,9 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void skipLogin(View view){
+        loginDialog.dismiss();
+    }
     public void goToSearchPage(View view){
         Intent intent = new Intent(this, SearchActivity.class);
         intent.putExtra("lat", lat);

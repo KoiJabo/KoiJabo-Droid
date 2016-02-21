@@ -121,6 +121,7 @@
                 android:textColor="@color/cardview_light_background" />
         </RelativeLayout>
 
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/first_page_restaurant_result_list"
             android:layout_width="match_parent"
