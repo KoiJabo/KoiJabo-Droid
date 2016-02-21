@@ -47,6 +47,7 @@
                 style="@style/AddReviewSeekbar"
                 android:max="4"
                 android:progress="2"
+
                 android:layout_below="@id/food_seekBar_title" />
 
             <TextView
