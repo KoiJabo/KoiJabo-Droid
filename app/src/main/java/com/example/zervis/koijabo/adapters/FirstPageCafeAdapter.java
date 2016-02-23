@@ -75,8 +75,8 @@ public class FirstPageCafeAdapter extends RecyclerView.Adapter<FirstPageCafeAdap
             super(itemView);
             itemView.setOnClickListener(this);
 
-            list_item_title = (TextView)itemView.findViewById(R.id.first_page_restaurant_result_list_item_title);
-            first_page_cafe_result_list_item_img = (ImageView)itemView.findViewById(R.id.first_page_cafe_result_list_item_img);
+            list_item_title = (TextView)itemView.findViewById(R.id.cafe_title);
+            first_page_cafe_result_list_item_img = (ImageView)itemView.findViewById(R.id.cafe_img);
             cafe_id = (TextView)itemView.findViewById(R.id.cafe_id);
         }
 

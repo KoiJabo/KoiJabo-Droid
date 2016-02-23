@@ -20,36 +20,38 @@
             android:textSize="0dp"
             android:text="asdasdasd"/>
         <ImageView
-            android:id="@+id/first_page_restaurant_result_list_item_img"
+            android:id="@+id/restaurant_img"
             android:layout_width="140dp"
             android:layout_height="100dp"
             android:src="@drawable/sample" />
 
         <TextView
-            android:id="@+id/first_page_restaurant_result_list_item_title"
+            android:id="@+id/restaurant_title"
             android:layout_width="140dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:paddingLeft="10dp"
             android:text="Gloria Jeans Coffes"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="22dp" />
+            android:textSize="14dp" />
 
         <TextView
-            android:id="@+id/list_item_key_cuisine"
+            android:id="@+id/restaurant_cuisine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:text="Coffee, Snacks" />
+            android:text="Coffee, Snacks"
+            android:textSize="12dp"/>
 
         <TextView
-            android:id="@+id/list_item_address"
+            android:id="@+id/restaurant_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/list_item_key_cuisine"
             android:layout_marginBottom="10dp"
             android:paddingLeft="10dp"
-            android:text="Road 24/a, Gulshan 1" />
+            android:text="Road 24/a, Gulshan 1"
+            android:textSize="12dp"/>
 
 
         <RelativeLayout
@@ -66,7 +68,7 @@
                 android:src="@mipmap/ic_star" />
 
             <TextView
-                android:id="@+id/list_item_ratingbar"
+                android:id="@+id/restaurant_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="35dp"
@@ -76,11 +78,10 @@
                 android:textColor="@color/cardview_dark_background" />
 
             <TextView
-                android:id="@+id/list_item_open_or_close"
+                android:id="@+id/restaurant_open_or_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/list_item_distance"
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="5dp"
                 android:textSize="16dp"

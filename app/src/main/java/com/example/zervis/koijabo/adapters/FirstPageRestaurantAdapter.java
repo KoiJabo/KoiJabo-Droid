@@ -70,8 +70,8 @@ public class FirstPageRestaurantAdapter extends RecyclerView.Adapter<FirstPageRe
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            first_page_restaurant_result_list_item_title = (TextView)itemView.findViewById(R.id.first_page_restaurant_result_list_item_title);
-            first_page_restaurant_result_list_item_img = (ImageView)itemView.findViewById(R.id.first_page_restaurant_result_list_item_img);
+            first_page_restaurant_result_list_item_title = (TextView)itemView.findViewById(R.id.restaurant_title);
+            first_page_restaurant_result_list_item_img = (ImageView)itemView.findViewById(R.id.restaurant_img);
             restaurant_id = (TextView)itemView.findViewById(R.id.restaurant_id);
         }
 
