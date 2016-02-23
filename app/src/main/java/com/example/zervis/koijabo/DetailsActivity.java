@@ -180,16 +180,25 @@ public class DetailsActivity extends Activity {
 
 
         for (int i=0;i<detailsModel.getTagsTrue().size(); i ++){
+
             TextView textView = (TextView)findViewById(tagsTrueTextsId[i]);
+            textView.setVisibility(View.VISIBLE);
             textView.setText(detailsModel.getTagsTrue().get(i));
+
             ImageView imageView = (ImageView)findViewById(tagsTrueImagesId[i]);
+            imageView.setVisibility(View.VISIBLE);
             imageView.setImageResource(R.mipmap.ic_true);
         }
 
         for (int i=0;i<detailsModel.getTagsFalse().size(); i ++){
+
             TextView textView = (TextView)findViewById(tagsFalseTextsId[i]);
+            textView.setVisibility(View.VISIBLE);
             textView.setText(detailsModel.getTagsFalse().get(i));
+
+
             ImageView imageView = (ImageView)findViewById(tagsFalseImagesId[i]);
+            imageView.setVisibility(View.VISIBLE);
             imageView.setImageResource(R.mipmap.ic_false);
         }
 
@@ -217,7 +226,7 @@ public class DetailsActivity extends Activity {
     public void facebookLogin(View view){
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton)view.findViewById(R.id.login_button);
-        loginButton.setReadPermissions("user_friends","public_profile", "email");
+        loginButton.setReadPermissions("user_friends", "public_profile", "email");
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -225,7 +234,7 @@ public class DetailsActivity extends Activity {
                 loginDialog.dismiss();
 
 
-                if(Profile.getCurrentProfile() == null) {
+                if (Profile.getCurrentProfile() == null) {
                     mProfileTracker = new ProfileTracker() {
                         @Override
                         protected void onCurrentProfileChanged(Profile profile1, Profile profile2) {
@@ -237,10 +246,9 @@ public class DetailsActivity extends Activity {
                         }
                     };
                     mProfileTracker.startTracking();
-                }
-                else {
+                } else {
                     KoiJaboApplication.profile = Profile.getCurrentProfile();
-                    
+
                     Log.v("facebook - profile", KoiJaboApplication.profile.getFirstName());
                 }
 
@@ -257,5 +265,9 @@ public class DetailsActivity extends Activity {
                 // App code
             }
         });
+    }
+
+    public void moreReviews(View view){
+        
     }
 }

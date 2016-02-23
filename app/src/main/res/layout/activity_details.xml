@@ -500,6 +500,15 @@
                             android:text="" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+                <android.support.v7.widget.ButtonBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="MORE REVIEWS"
+                        android:onClick="moreReviews"/>
+                </android.support.v7.widget.ButtonBarLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>
