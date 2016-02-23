@@ -354,8 +354,6 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
         } else if (id == R.id.nav_myfav) {
 
-        } else if (id == R.id.nav_slideshow) {
-
         } else if (id == R.id.nav_fbgroup) {
 
         } else if (id == R.id.nav_log) {
@@ -370,8 +368,6 @@ public class MainActivity extends AppCompatActivity
                 loginDialog = new LogInDialog();
                 loginDialog.show(getFragmentManager(), "Login dialog");
             }
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
