@@ -103,8 +103,9 @@ public class DetailsActivity extends Activity {
                 List<Review> reviews = response.body();
 
                 try {
-                    TextView user1 = (TextView)findViewById(R.id.user1);
-                    user1.setText(reviews.get(0).getFbUserName());
+                    ProfilePictureView profilePictureView;
+                    profilePictureView = (ProfilePictureView)findViewById(R.id.user1);
+                    profilePictureView.setProfileId(reviews.get(0).getFbUserId());
 
                     TextView review1 = (TextView)findViewById(R.id.review1);
                     review1.setText(reviews.get(0).getTextReview());
@@ -114,8 +115,10 @@ public class DetailsActivity extends Activity {
 
                 }
                 try {
-                    TextView user2 = (TextView)findViewById(R.id.user2);
-                    user2.setText(reviews.get(1).getFbUserName());
+                    ProfilePictureView profilePictureView;
+                    profilePictureView = (ProfilePictureView)findViewById(R.id.user2);
+                    profilePictureView.setProfileId(reviews.get(1).getFbUserId());
+
 
                     TextView review2 = (TextView)findViewById(R.id.review2);
                     review2.setText(reviews.get(1).getTextReview());
@@ -125,8 +128,9 @@ public class DetailsActivity extends Activity {
 
                 }
                 try{
-                    TextView user3 = (TextView)findViewById(R.id.user3);
-                    user3.setText(reviews.get(2).getFbUserName());
+                    ProfilePictureView profilePictureView;
+                    profilePictureView = (ProfilePictureView)findViewById(R.id.user3);
+                    profilePictureView.setProfileId(reviews.get(2).getFbUserId());
 
                     TextView review3 = (TextView)findViewById(R.id.review3);
                     review3.setText(reviews.get(2).getTextReview());
@@ -268,6 +272,9 @@ public class DetailsActivity extends Activity {
     }
 
     public void moreReviews(View view){
-        
+        Intent intent = new Intent(this, MoreReviews.class);
+        intent.putExtra("id", detailsModel.getId());
+
+        startActivity(intent);
     }
 }

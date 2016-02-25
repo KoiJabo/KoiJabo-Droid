@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <LinearLayout style="@style/tagsTextlayout">
+        <LinearLayout android:id="@+id/falseLayout0" style="@style/tagsTextlayout">
             <ImageView android:id="@+id/falseImage0" style="@style/tagsFalseImage"/>
             <TextView android:id="@+id/falsTag0" style="@style/tagsText"/>
         </LinearLayout>
