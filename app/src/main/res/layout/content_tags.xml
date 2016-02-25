@@ -4,7 +4,9 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:orientation="horizontal"
-    android:layout_margin="10dp">
+    android:layout_marginLeft="11dp"
+    android:layout_marginRight="11dp"
+    android:layout_marginTop="10dp">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -12,44 +14,24 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout android:id="@+id/falseLayout0" style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/falseImage0" style="@style/tagsFalseImage"/>
-            <TextView android:id="@+id/falsTag0" style="@style/tagsText"/>
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/falseImage1" style="@style/tagsFalseImage"/>
-            <TextView android:id="@+id/falsTag1" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/falseLayout1" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/falseImage2" style="@style/tagsFalseImage"/>
-            <TextView android:id="@+id/falsTag2" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/falseLayout2" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/falseImage3" style="@style/tagsFalseImage"/>
-            <TextView android:id="@+id/falsTag3" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/falseLayout3" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/falseImage4" style="@style/tagsFalseImage"/>
-            <TextView android:id="@+id/falsTag4" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/falseLayout4" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/falseImage5" style="@style/tagsFalseImage"/>
-            <TextView android:id="@+id/falsTag5" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/falseLayout5" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/falseImage6" style="@style/tagsFalseImage"/>
-            <TextView android:id="@+id/falsTag6" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/falseLayout6" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/falseImage7" style="@style/tagsFalseImage"/>
-            <TextView android:id="@+id/falsTag7" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/falseLayout7" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/falseImage8" style="@style/tagsFalseImage"/>
-            <TextView android:id="@+id/falsTag8" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/falseLayout8" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/falseImage9" style="@style/tagsFalseImage"/>
-            <TextView android:id="@+id/falsTag9" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/falseLayout9" style="@style/tagsTextlayout">
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -58,45 +40,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/trueImage0" style="@style/tagsTrueImage"/>
-            <TextView android:id="@+id/trueTag0" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/truelayout0" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/trueImage1" style="@style/tagsTrueImage"/>
-            <TextView android:id="@+id/trueTag1" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/truelayout1" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/trueImage2" style="@style/tagsTrueImage"/>
-            <TextView android:id="@+id/trueTag2" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/truelayout2" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/trueImage3" style="@style/tagsTrueImage"/>
-            <TextView android:id="@+id/trueTag3" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/truelayout3" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/trueImage4" style="@style/tagsTrueImage"/>
-            <TextView android:id="@+id/trueTag4" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/truelayout4" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/trueImage5" style="@style/tagsTrueImage"/>
-            <TextView android:id="@+id/trueTag5" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/truelayout5" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/trueImage6" style="@style/tagsTrueImage"/>
-            <TextView android:id="@+id/trueTag6" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/truelayout6" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/trueImage7" style="@style/tagsTrueImage"/>
-            <TextView android:id="@+id/trueTag7" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/truelayout7" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/trueImage8" style="@style/tagsTrueImage"/>
-            <TextView android:id="@+id/trueTag8" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/truelayout8" style="@style/tagsTextlayout">
         </LinearLayout>
-        <LinearLayout style="@style/tagsTextlayout">
-            <ImageView android:id="@+id/trueImage9" style="@style/tagsTrueImage"/>
-            <TextView android:id="@+id/trueTag9" style="@style/tagsText"/>
+        <LinearLayout android:id="@+id/truelayout9" style="@style/tagsTextlayout">
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

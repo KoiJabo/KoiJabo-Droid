@@ -14,7 +14,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ActionMenuView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +47,8 @@ import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 
+import static com.example.zervis.koijabo.R.style.tagsText;
+
 public class DetailsActivity extends Activity {
 
     RecyclerView mTagsTrueRecyclerView;
@@ -61,10 +65,14 @@ public class DetailsActivity extends Activity {
     private ProfileTracker mProfileTracker;
     Context context;
 
-    int[] tagsTrueTextsId = {R.id.trueTag0,R.id.trueTag1,R.id.trueTag2,R.id.trueTag3,R.id.trueTag4,R.id.trueTag5,R.id.trueTag6,R.id.trueTag7,R.id.trueTag8,R.id.trueTag9};
-    int[] tagsFalseTextsId = {R.id.falsTag0,R.id.falsTag1,R.id.falsTag2,R.id.falsTag3,R.id.falsTag4,R.id.falsTag5,R.id.falsTag6,R.id.falsTag7,R.id.falsTag8,R.id.falsTag9};
-    int[] tagsTrueImagesId = {R.id.trueImage0,R.id.trueImage1,R.id.trueImage2,R.id.trueImage3,R.id.trueImage4,R.id.trueImage5,R.id.trueImage6,R.id.trueImage7,R.id.trueImage8,R.id.trueImage9};
-    int[] tagsFalseImagesId = {R.id.falseImage0,R.id.falseImage1,R.id.falseImage2,R.id.falseImage3,R.id.falseImage4,R.id.falseImage5,R.id.falseImage6,R.id.falseImage7,R.id.falseImage8,R.id.falseImage9};
+//    int[] tagsTrueTextsId = {R.id.trueTag0,R.id.trueTag1,R.id.trueTag2,R.id.trueTag3,R.id.trueTag4,R.id.trueTag5,R.id.trueTag6,R.id.trueTag7,R.id.trueTag8,R.id.trueTag9};
+//    int[] tagsFalseTextsId = {R.id.falsTag0,R.id.falsTag1,R.id.falsTag2,R.id.falsTag3,R.id.falsTag4,R.id.falsTag5,R.id.falsTag6,R.id.falsTag7,R.id.falsTag8,R.id.falsTag9};
+//    int[] tagsTrueImagesId = {R.id.trueImage0,R.id.trueImage1,R.id.trueImage2,R.id.trueImage3,R.id.trueImage4,R.id.trueImage5,R.id.trueImage6,R.id.trueImage7,R.id.trueImage8,R.id.trueImage9};
+//    int[] tagsFalseImagesId = {R.id.falseImage0,R.id.falseImage1,R.id.falseImage2,R.id.falseImage3,R.id.falseImage4,R.id.falseImage5,R.id.falseImage6,R.id.falseImage7,R.id.falseImage8,R.id.falseImage9};
+
+
+    int[] tagsTrueLayoutId = {R.id.truelayout0,R.id.truelayout1,R.id.truelayout2,R.id.truelayout3,R.id.truelayout4,R.id.truelayout5,R.id.truelayout6,R.id.truelayout7,R.id.truelayout8,R.id.truelayout9};
+    int[] tagsFalseLayoutId = {R.id.falseLayout0,R.id.falseLayout1,R.id.falseLayout2,R.id.falseLayout3,R.id.falseLayout4,R.id.falseLayout5,R.id.falseLayout6,R.id.falseLayout7,R.id.falseLayout8,R.id.falseLayout9};
 
     DetailsModel detailsModel = new DetailsModel();
     @Override
@@ -185,29 +193,43 @@ public class DetailsActivity extends Activity {
 
         for (int i=0;i<detailsModel.getTagsTrue().size(); i ++){
 
-            TextView textView = (TextView)findViewById(tagsTrueTextsId[i]);
-            textView.setVisibility(View.VISIBLE);
+            TextView textView = new TextView(this);
+            LinearLayout.LayoutParams paramsText = new LinearLayout.LayoutParams
+                    (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            paramsText.setMargins(22, 3, 10, 0);
+            textView.setLayoutParams(paramsText);
+            textView.setTextSize(12);
             textView.setText(detailsModel.getTagsTrue().get(i));
 
-            ImageView imageView = (ImageView)findViewById(tagsTrueImagesId[i]);
-            imageView.setVisibility(View.VISIBLE);
+            ImageView imageView = new ImageView(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(35, 35);
+            imageView.setLayoutParams(params);
             imageView.setImageResource(R.mipmap.ic_true);
+
+            LinearLayout layout = (LinearLayout)findViewById(tagsTrueLayoutId[i]);
+            layout.addView(imageView,0);
+            layout.addView(textView,1);
         }
 
         for (int i=0;i<detailsModel.getTagsFalse().size(); i ++){
 
-            TextView textView = (TextView)findViewById(tagsFalseTextsId[i]);
-            textView.setVisibility(View.VISIBLE);
+            TextView textView = new TextView(this);
+            LinearLayout.LayoutParams paramsText = new LinearLayout.LayoutParams
+                    (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            paramsText.setMargins(22,3,10,0);
+            textView.setLayoutParams(paramsText);
+            textView.setTextSize(12);
             textView.setText(detailsModel.getTagsFalse().get(i));
 
-
-            ImageView imageView = (ImageView)findViewById(tagsFalseImagesId[i]);
-            imageView.setVisibility(View.VISIBLE);
+            ImageView imageView = new ImageView(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(35, 35);
+            imageView.setLayoutParams(params);
             imageView.setImageResource(R.mipmap.ic_false);
+
+            LinearLayout layout = (LinearLayout)findViewById(tagsFalseLayoutId[i]);
+            layout.addView(imageView, 0);
+            layout.addView(textView, 1);
         }
-
-
-
     }
 
     public void goToAddReviewPage(View view){
