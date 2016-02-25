@@ -340,6 +340,8 @@ public class DetailsActivity extends Activity {
             Intent intent = new Intent(this, AddReviewActivity.class);
             String id = detailsModel.getId();
             intent.putExtra("id",id);
+            String name = detailsModel.getName();
+            intent.putExtra("name",name);
             startActivity(intent);
         } else{
             loginDialog = new LogInDialog();
