@@ -4,15 +4,20 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Zarvis on 09/02/2016.
  */
 public class Utility {
-    public static String listToStringBuilder(ArrayList<String> stringList){
+    public static String listToStringBuilder(List<String> stringList, String separator){
         String string = "";
+        int lastIndex = stringList.size()-1;
         for (int i=0; i< stringList.size(); i++){
-            string += stringList.get(i) + " ";
+            if (i!= lastIndex)
+                string += stringList.get(i) + separator;
+            else
+                string += stringList.get(i);
         }
         return string;
     }

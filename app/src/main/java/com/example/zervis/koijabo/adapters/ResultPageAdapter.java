@@ -56,7 +56,7 @@ public class ResultPageAdapter extends RecyclerView.Adapter<ResultPageAdapter.Vi
         catch (Exception e){
 
         }
-        String cuisine = Utility.listToStringBuilder((ArrayList<String>) items.get(position).getCuisines());
+        String cuisine = Utility.listToStringBuilder((ArrayList<String>) items.get(position).getCuisines()," ");
         holder.result_list_item_key_cuisine.setText(cuisine);
         holder.result_list_item_address.setText(items.get(position).getArea());
         holder.result_list_item_ratingbar.setText(items.get(position).getGeneralRatingRating().toString());

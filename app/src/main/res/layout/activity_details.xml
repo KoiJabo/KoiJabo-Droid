@@ -300,6 +300,7 @@
                         android:text="Parking : " />
 
                     <TextView
+                        android:id="@+id/details_parking_text"
                         style="@style/details_page_linearlayout_text"
                         android:text="Parking lot" />
                 </LinearLayout>
@@ -315,6 +316,7 @@
                         android:text="Attire : " />
 
                     <TextView
+                        android:id="@+id/details_attire_text"
                         style="@style/details_page_linearlayout_text"
                         android:text="Casual" />
                 </LinearLayout>
@@ -351,21 +353,21 @@
                         android:text="Families with children, Meetings, Large groups, Romantic, Hangout" />
                 </LinearLayout>
 
-                <LinearLayout style="@style/details_page_attribute_linearlayout">
+                <!--<LinearLayout style="@style/details_page_attribute_linearlayout">-->
 
-                    <ImageView
-                        style="@style/details_page_linearlayout_imageview"
-                        android:src="@mipmap/ic_extablishment" />
+                    <!--<ImageView-->
+                        <!--style="@style/details_page_linearlayout_imageview"-->
+                        <!--android:src="@mipmap/ic_extablishment" />-->
 
-                    <TextView
-                        style="@style/details_page_linearlayout_title_text"
-                        android:text="Type : " />
+                    <!--<TextView-->
+                        <!--style="@style/details_page_linearlayout_title_text"-->
+                        <!--android:text="Type : " />-->
 
-                    <TextView
-                        android:id="@+id/details_establishment_type_text"
-                        style="@style/details_page_linearlayout_text"
-                        android:text="Casual Dining, Food Courts" />
-                </LinearLayout>
+                    <!--<TextView-->
+                        <!--android:id="@+id/details_establishment_type_text"-->
+                        <!--style="@style/details_page_linearlayout_text"-->
+                        <!--android:text="Casual Dining, Food Courts" />-->
+                <!--</LinearLayout>-->
 
                 <LinearLayout style="@style/details_page_attribute_linearlayout">
 
@@ -378,6 +380,7 @@
                         android:text="Cards : " />
 
                     <TextView
+                        android:id="@+id/details_card_text"
                         style="@style/details_page_linearlayout_text"
                         android:text="Visa, Master" />
                 </LinearLayout>

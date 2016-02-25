@@ -73,7 +73,7 @@ public class DetailsModel {
     private Integer CostLowerLimit;
     @SerializedName("CreditCards")
     @Expose
-    private List<Object> CreditCards = new ArrayList<Object>();
+    private List<String> CreditCards = new ArrayList<String>();
     @SerializedName("GoodFor")
     @Expose
     private List<String> GoodFor = new ArrayList<String>();
@@ -387,14 +387,14 @@ public class DetailsModel {
     /**
      * @return The CreditCards
      */
-    public List<Object> getCreditCards() {
+    public List<String> getCreditCards() {
         return CreditCards;
     }
 
     /**
      * @param CreditCards The CreditCards
      */
-    public void setCreditCards(List<Object> CreditCards) {
+    public void setCreditCards(List<String> CreditCards) {
         this.CreditCards = CreditCards;
     }
 

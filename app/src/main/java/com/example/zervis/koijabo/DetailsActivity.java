@@ -160,35 +160,137 @@ public class DetailsActivity extends Activity {
     private void assignValues(DetailsModel detailsModel) {
 
         //find out a way to load layout background from url
-        final RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.details_page_background);
+        final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.details_page_background);
 
 
-        TextView title = (TextView)findViewById(R.id.details_page_heading_title);
-        title.setText(detailsModel.getName());
+        TextView title = (TextView) findViewById(R.id.details_page_heading_title);
+        try {
+            title.setText(detailsModel.getName());
+        } catch (Exception e) {
+            title.setText("Info not available");
+        }
 
-        TextView address = (TextView)findViewById(R.id.details_page_heading_address);
-        address.setText(detailsModel.getAddress());
+        TextView address = (TextView) findViewById(R.id.details_page_heading_address);
+        try {
+            address.setText(detailsModel.getAddress());
+        } catch (Exception e) {
+            address.setText("Info not available");
+        }
 
-        TextView generalRating = (TextView)findViewById(R.id.details_page_general_rating);
-        generalRating.setText(detailsModel.getGeneralRatingRating().toString());
+        TextView generalRating = (TextView) findViewById(R.id.details_page_general_rating);
+        try {
+            generalRating.setText(detailsModel.getGeneralRatingRating().toString());
+        } catch (Exception e) {
+            generalRating.setText("Info not available");
+        }
 
 
-        TextView establishmentType = (TextView)findViewById(R.id.details_page_establishment_type);
-        String establisment = Utility.listToStringbuilderWithNewLine((ArrayList<String>) detailsModel.getEstablishmentType());
-        establishmentType.setText(establisment);
+        TextView establishmentType = (TextView) findViewById(R.id.details_page_establishment_type);
+        try {
+            String establisment = Utility.listToStringbuilderWithNewLine((ArrayList<String>)
+                    detailsModel.getEstablishmentType());
+            establishmentType.setText(establisment);
+        } catch (Exception e) {
+            String establisment = "Info not available";
+            establishmentType.setText(establisment);
+        }
+
 
         TextView openOrClose = (TextView)findViewById(R.id.detail_page_open_close);
-        String openorclose = detailsModel.getIsOpenNow()? "Open" : "Close";
-        openOrClose.setText(openorclose);
+        try{
+            String openorclose = detailsModel.getIsOpenNow()? "Open" : "Close";
+            openOrClose.setText(openorclose);
+        } catch(Exception e){
+            openOrClose.setText("Info not available");
+        }
 
 
         TextView ratingText = (TextView)findViewById(R.id.detail_page_rating_text);
-        String ratingtext = Utility.ratingText(detailsModel.getGeneralRatingRating());
-        ratingText.setText(ratingtext);
+        try{
+            String ratingtext = Utility.ratingText(detailsModel.getGeneralRatingRating());
+            ratingText.setText(ratingtext);
+        } catch(Exception e){
+            String ratingtext = "Info not available";
+            ratingText.setText(ratingtext);
+        }
 
 
         TextView rating = (TextView)findViewById(R.id.detail_page_rating_number);
-        rating.setText(detailsModel.getGeneralRatingRating().toString());
+        try{
+            rating.setText(detailsModel.getGeneralRatingRating().toString());
+        } catch(Exception e){
+            rating.setText("Info not available");
+        }
+
+
+        TextView ambienceRating = (TextView)findViewById(R.id.details_ambience_rating);
+        try{
+            ambienceRating.setText(detailsModel.getAmbienceRating().toString());
+        } catch(Exception e){
+            ambienceRating.setText("Info not available");
+        }
+
+        TextView serviceRating = (TextView)findViewById(R.id.item_review_service_rating);
+        try{
+            serviceRating .setText(detailsModel.getServiceRating().toString());
+        } catch(Exception e){
+            serviceRating .setText("Info not available");
+        }
+
+        TextView foodRating = (TextView)findViewById(R.id.item_review_food_rating);
+        try{
+            foodRating .setText(detailsModel.getFoodRating().toString());
+        } catch(Exception e){
+            foodRating .setText("Info not available");
+        }
+
+        TextView noiseLevel = (TextView)findViewById(R.id.details_noise_level_text);
+        try{
+            noiseLevel .setText(detailsModel.getNoiseLevel().toString());
+        } catch(Exception e){
+            noiseLevel .setText("Info not available");
+        }
+
+        TextView parking = (TextView)findViewById(R.id.details_parking_text);
+        try{
+            parking.setText(detailsModel.getParking().toString());
+        } catch(Exception e){
+            parking.setText("Info not available");
+        }
+
+        TextView attire = (TextView)findViewById(R.id.details_attire_text);
+        try{
+            attire.setText(detailsModel.getAttire().toString());
+        } catch(Exception e){
+            attire.setText("Info not available");
+        }
+
+        TextView cuisine = (TextView)findViewById(R.id.details_cuisine_text);
+        try{
+            cuisine.setText(Utility.listToStringBuilder(detailsModel.getCuisines(), ", "));
+        } catch(Exception e){
+            cuisine.setText("Info not available");
+        }
+
+        TextView goodFor = (TextView)findViewById(R.id.details_good_for_text);
+        try{
+            goodFor.setText(Utility.listToStringBuilder(detailsModel.getGoodFor(),", "));
+        } catch(Exception e){
+            goodFor.setText("Info not available");
+        }
+
+        TextView card = (TextView)findViewById(R.id.details_card_text);
+        try{
+            card.setText(Utility.listToStringBuilder(detailsModel.getCreditCards(),", "));
+        } catch(Exception e){
+            card.setText("Info not available");
+        }
+
+
+
+
+
+
 
 
         for (int i=0;i<detailsModel.getTagsTrue().size(); i ++){
