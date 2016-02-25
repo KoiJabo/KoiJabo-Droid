@@ -126,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/colorPrimaryDark"
-                    android:onClick="goToAddReviewPage"
+                    android:onClick="makePhoneCall"
                     android:text="Call"
                     android:textColor="@color/cardview_light_background"
                     android:textSize="20sp" />

@@ -24,7 +24,7 @@ public interface APIInterface {
     @GET("api/Restaurant/get")
     Call<DetailsModel> getDetails(@Query("id") String value);
 
-    @GET("api/Restaurant/getoptionsfordashboard")
+    @GET("api/OptionsForDashboard/Get")
     Call<SearchSuggestion> getSearchSuggestions();
 
 

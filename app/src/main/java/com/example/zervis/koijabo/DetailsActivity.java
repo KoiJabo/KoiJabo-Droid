@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
@@ -402,5 +403,15 @@ public class DetailsActivity extends Activity {
         intent.putExtra("id", detailsModel.getId());
 
         startActivity(intent);
+    }
+
+    public void makePhoneCall(View view){
+        if (detailsModel.getPhoneNumber().isEmpty()){
+            Toast.makeText(context, "Phone number not available", Toast.LENGTH_LONG).show();
+        } else{
+            Intent callIntent = new Intent(Intent.ACTION_CALL);
+            callIntent.setData(Uri.parse(detailsModel.getPhoneNumber()));
+            startActivity(callIntent);
+        }
     }
 }

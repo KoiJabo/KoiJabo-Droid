@@ -20,36 +20,37 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/result_page_back_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_margin="10dp"
-                    android:background="@color/colorPrimary"
-                    android:foreground="?android:attr/selectableItemBackground"
-
-                    android:src="@mipmap/ic_back" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="Search Result for :"
+                    android:textColor="@color/cardview_light_background"
+                    android:textSize="12dp"
+                    android:textStyle="normal" />
+                <TextView
+                    android:id="@+id/search_query_text"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_margin="5dp"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/result_page_back_button"
-                    android:layout_marginLeft="60dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Search Result"
+                    android:text="Casual Dining Families with children Parking LuxuryDining Reservation outdoor kids zone washroom "
                     android:textColor="@color/cardview_light_background"
-                    android:textSize="32sp"
+                    android:textSize="8dp"
                     android:textStyle="normal" />
-            </RelativeLayout>
+            </LinearLayout>
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
