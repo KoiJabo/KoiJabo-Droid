@@ -72,11 +72,13 @@
         <item name="android:textSize">12sp</item>
     </style>
     <style name="tagsTrueImage">
+        <item name="android:visibility">gone</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">20dp</item>
     </style>
     <style name="tagsFalseImage">
+        <item name="android:visibility">gone</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">20dp</item>

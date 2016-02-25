@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp">
+                <com.facebook.login.widget.ProfilePictureView
+                    android:id="@+id/item_reviewer_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/item_reviewer_name"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
+                        android:text="Muhammed Tareq Aziz"
+                        android:textSize="16dp"
+                        android:textColor="@color/cardview_dark_background"/>
+                    <TextView
+                        android:id="@+id/item_reviewing_date"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:text="1 day ago"/>
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:id="@+id/item_review_overall_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="Overall"
+                        android:textColor="#4CAF50"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/item_review_overall_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:fontFamily="sans-serif-light"
+                        android:text="4.5"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="12dp" />
+                    <TextView
+                        android:id="@+id/item_review_ambience_title"
+                        android:layout_below="@+id/item_review_overall_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="Ambience"
+                        android:textColor="#4CAF50"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/item_review_ambience_rating"
+                        android:layout_below="@+id/item_review_overall_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:fontFamily="sans-serif-light"
+                        android:text="4.5"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/item_review_service_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/item_review_ambience_title"
+                        android:layout_marginRight="20dp"
+                        android:text="Service"
+                        android:textColor="#4CAF50"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/item_review_service_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/item_review_ambience_title"
+                        android:fontFamily="sans-serif-light"
+                        android:text="4.5"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="12dp" />
+
+
+                    <TextView
+                        android:id="@+id/item_review_food_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/item_review_service_title"
+                        android:layout_marginRight="20dp"
+                        android:text="Food"
+                        android:textColor="#4CAF50"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/item_review_food_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/item_review_service_title"
+                        android:fontFamily="sans-serif-light"
+                        android:text="4.5"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="12dp" />
+
+
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/item_review_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="naga burger এর সুনাম শুনতে শুনতে পাগল হয়ে গেলাম coffee express । আমি life-এ এই পর্যন্ত যত বার্গার খেয়েছি তাদের মধ্যে সবচেয়ে ফালতু হচ্ছে এই নাগা বার্গার। patty-টা একটুও মজা না আর ঝাল করেছে patty-এর উপর গুরা মরিচ ছিটিয়ে দিয়ে gasp emoticon gasp emoticon
+এই বার্গারের সবাই এত ভাল review যে কেন দিয়েছিল আল্লাহ জানেন। এর আগেও ভাল review দেখে 2GO তে গিয়েছিলাম সেটাও ফালতু ছিল। colonthree emoticon colonthree emoticon
+যারা যান নি Please আর যাওয়ার কথা চিন্তাও করবেন না।"/>
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>
