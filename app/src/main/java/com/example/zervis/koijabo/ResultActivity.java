@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.zervis.koijabo.adapters.ResultPageAdapter;
 import com.example.zervis.koijabo.lib.LocationDetector;
@@ -46,6 +47,9 @@ public class ResultActivity extends Activity {
         Value =  intent.getExtras().getString("Value");
         lat = intent.getExtras().getDouble("lat");
         lon = intent.getExtras().getDouble("lon");
+
+        TextView searchQuer = (TextView)findViewById(R.id.search_query_text);
+        searchQuer.setText(Value);
 
 
         APIInterface service = RestClient.getClient();

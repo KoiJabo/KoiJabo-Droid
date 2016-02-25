@@ -14,12 +14,13 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="AddReviewSeekbarHeading">
+        <item name="android:textColor">@color/cardview_dark_background</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
-        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
         <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="AddReviewSeekbar">

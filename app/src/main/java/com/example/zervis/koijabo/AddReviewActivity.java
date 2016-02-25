@@ -92,6 +92,12 @@ public class AddReviewActivity extends Activity {
         String restaurantId =  intent.getExtras().getString("id");
         reviewSubmit.setRestaurantId(restaurantId);
 
+
+        String restaurantName =  intent.getExtras().getString("name");
+        TextView title = (TextView)findViewById(R.id.add_review_page_title);
+        title.setText("Add review for " + restaurantName);
+
+
         String name =  KoiJaboApplication.profile.getName();
         String fbUserId = KoiJaboApplication.profile.getId();
         reviewSubmit.setFbUserName(name);
