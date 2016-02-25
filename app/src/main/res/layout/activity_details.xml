@@ -14,8 +14,8 @@
         <RelativeLayout
             android:id="@+id/details_page_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/sample2">
+            android:layout_height="300dp"
+            android:background="@drawable/sample">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -391,6 +391,8 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
+            android:id="@+id/detail_page_user_reviews"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -408,6 +410,8 @@
                     android:textSize="20dp"
                     android:layout_margin="10dp"/>
                 <android.support.v7.widget.CardView
+                    android:id="@+id/details_page_user_review1_layout"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -432,6 +436,8 @@
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
+                    android:id="@+id/details_page_user_review2_layout"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -456,6 +462,8 @@
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
+                    android:id="@+id/details_page_user_review3_layout"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"

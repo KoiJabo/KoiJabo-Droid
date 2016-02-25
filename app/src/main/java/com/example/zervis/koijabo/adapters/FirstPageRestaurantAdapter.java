@@ -2,6 +2,7 @@ package com.example.zervis.koijabo.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.zervis.koijabo.DetailsActivity;
 import com.example.zervis.koijabo.R;
+import com.example.zervis.koijabo.lib.Utility;
 import com.example.zervis.koijabo.pojo.ResultModel;
 import com.squareup.picasso.Picasso;
 
@@ -54,6 +56,18 @@ public class FirstPageRestaurantAdapter extends RecyclerView.Adapter<FirstPageRe
         catch (Exception e){
 
         }
+
+        holder.restaurant_address.setText(items.get(position).getArea());
+        holder.restaurant_cuisine.setText(Utility.listToStringBuilder(items.get(position).getCuisines(), ", "));
+        holder.restaurant_rating.setText(items.get(position).getGeneralRatingRating().toString());
+
+        if (items.get(position).getIsOpenNow()){
+            holder.restaurant_open_or_close.setText("Open");
+            holder.restaurant_open_or_close.setTextColor(Color.parseColor("#4CAF50"));
+        } else {
+            holder.restaurant_open_or_close.setText("Close");
+            holder.restaurant_open_or_close.setTextColor(Color.parseColor("#F44336"));
+        }
     }
 
     @Override
@@ -67,12 +81,22 @@ public class FirstPageRestaurantAdapter extends RecyclerView.Adapter<FirstPageRe
         public ImageView first_page_restaurant_result_list_item_img;
         public TextView restaurant_id;
 
+        public TextView restaurant_cuisine;
+        public TextView restaurant_address;
+        public TextView restaurant_rating;
+        public TextView restaurant_open_or_close;
+
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             first_page_restaurant_result_list_item_title = (TextView)itemView.findViewById(R.id.restaurant_title);
             first_page_restaurant_result_list_item_img = (ImageView)itemView.findViewById(R.id.restaurant_img);
             restaurant_id = (TextView)itemView.findViewById(R.id.restaurant_id);
+
+            restaurant_cuisine = (TextView)itemView.findViewById(R.id.restaurant_cuisine) ;
+            restaurant_address = (TextView)itemView.findViewById(R.id.restaurant_address) ;
+            restaurant_rating = (TextView)itemView.findViewById(R.id.restaurant_rating) ;
+            restaurant_open_or_close = (TextView)itemView.findViewById(R.id.restaurant_open_or_close);
         }
 
         @Override

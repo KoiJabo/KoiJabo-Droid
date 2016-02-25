@@ -13,7 +13,6 @@
             android:id="@+id/reviews_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gloria Jeans User Reviews"
             android:textSize="18dp"
             android:layout_margin="15dp"/>
     </android.support.design.widget.AppBarLayout>

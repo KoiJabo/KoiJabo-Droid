@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -48,6 +49,7 @@ import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 
+import static com.example.zervis.koijabo.R.style.CardView;
 import static com.example.zervis.koijabo.R.style.tagsText;
 
 public class DetailsActivity extends Activity {
@@ -110,42 +112,59 @@ public class DetailsActivity extends Activity {
             @Override
             public void onResponse(Response<List<Review>> response, Retrofit retrofit) {
                 List<Review> reviews = response.body();
-
-                try {
-                    ProfilePictureView profilePictureView;
-                    profilePictureView = (ProfilePictureView)findViewById(R.id.user1);
-                    profilePictureView.setProfileId(reviews.get(0).getFbUserId());
-
-                    TextView review1 = (TextView)findViewById(R.id.review1);
-                    review1.setText(reviews.get(0).getTextReview());
-                }
-
-                catch (Exception e){
-
-                }
-                try {
-                    ProfilePictureView profilePictureView;
-                    profilePictureView = (ProfilePictureView)findViewById(R.id.user2);
-                    profilePictureView.setProfileId(reviews.get(1).getFbUserId());
+                if (reviews.size()!=0){
+                    android.support.v7.widget.CardView layout = (CardView)findViewById(R.id.detail_page_user_reviews);
+                    layout.setVisibility(View.VISIBLE);
 
 
-                    TextView review2 = (TextView)findViewById(R.id.review2);
-                    review2.setText(reviews.get(1).getTextReview());
-                }
+                    try {
 
-                catch (Exception e){
+                        ProfilePictureView profilePictureView;
+                        profilePictureView = (ProfilePictureView)findViewById(R.id.user1);
+                        profilePictureView.setProfileId(reviews.get(0).getFbUserId());
 
-                }
-                try{
-                    ProfilePictureView profilePictureView;
-                    profilePictureView = (ProfilePictureView)findViewById(R.id.user3);
-                    profilePictureView.setProfileId(reviews.get(2).getFbUserId());
+                        TextView review1 = (TextView)findViewById(R.id.review1);
+                        review1.setText(reviews.get(0).getTextReview());
 
-                    TextView review3 = (TextView)findViewById(R.id.review3);
-                    review3.setText(reviews.get(2).getTextReview());
-                }
-                catch (Exception e){
+                        android.support.v7.widget.CardView cardView = (CardView)findViewById(R.id.details_page_user_review1_layout);
+                        cardView.setVisibility(View.VISIBLE);
+                    }
 
+                    catch (Exception e){
+
+                    }
+                    try {
+
+                        ProfilePictureView profilePictureView;
+                        profilePictureView = (ProfilePictureView)findViewById(R.id.user2);
+                        profilePictureView.setProfileId(reviews.get(1).getFbUserId());
+
+
+                        TextView review2 = (TextView)findViewById(R.id.review2);
+                        review2.setText(reviews.get(1).getTextReview());
+
+                        android.support.v7.widget.CardView cardView = (CardView)findViewById(R.id.details_page_user_review2_layout);
+                        cardView.setVisibility(View.VISIBLE);
+                    }
+
+                    catch (Exception e){
+
+                    }
+                    try{
+
+                        ProfilePictureView profilePictureView;
+                        profilePictureView = (ProfilePictureView)findViewById(R.id.user3);
+                        profilePictureView.setProfileId(reviews.get(2).getFbUserId());
+
+                        TextView review3 = (TextView)findViewById(R.id.review3);
+                        review3.setText(reviews.get(2).getTextReview());
+
+                        android.support.v7.widget.CardView cardView = (CardView)findViewById(R.id.details_page_user_review3_layout);
+                        cardView.setVisibility(View.VISIBLE);
+                    }
+                    catch (Exception e){
+
+                    }
                 }
             }
 
@@ -401,6 +420,7 @@ public class DetailsActivity extends Activity {
     public void moreReviews(View view){
         Intent intent = new Intent(this, MoreReviews.class);
         intent.putExtra("id", detailsModel.getId());
+        intent.putExtra("name", detailsModel.getName());
 
         startActivity(intent);
     }

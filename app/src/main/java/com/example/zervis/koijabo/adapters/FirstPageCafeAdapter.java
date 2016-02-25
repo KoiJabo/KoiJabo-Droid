@@ -2,6 +2,7 @@ package com.example.zervis.koijabo.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.zervis.koijabo.DetailsActivity;
 import com.example.zervis.koijabo.R;
+import com.example.zervis.koijabo.lib.Utility;
 import com.example.zervis.koijabo.pojo.ResultModel;
 import com.squareup.picasso.Picasso;
 
@@ -55,6 +57,17 @@ public class FirstPageCafeAdapter extends RecyclerView.Adapter<FirstPageCafeAdap
         catch (Exception e){
 
         }
+        holder.cafe_address.setText(items.get(position).getArea());
+        holder.cafe_key_cuisine.setText(Utility.listToStringBuilder(items.get(position).getCuisines(), ", "));
+        holder.cafe_rating.setText(items.get(position).getGeneralRatingRating().toString());
+
+        if (items.get(position).getIsOpenNow()){
+            holder.cafe_open_or_close.setText("Open");
+            holder.cafe_open_or_close.setTextColor(Color.parseColor("#4CAF50"));
+        } else {
+            holder.cafe_open_or_close.setText("Close");
+            holder.cafe_open_or_close.setTextColor(Color.parseColor("#F44336"));
+        }
 
     }
 
@@ -68,6 +81,10 @@ public class FirstPageCafeAdapter extends RecyclerView.Adapter<FirstPageCafeAdap
         public TextView list_item_title;
         public ImageView first_page_cafe_result_list_item_img;
         public TextView cafe_id;
+        public TextView cafe_key_cuisine;
+        public TextView cafe_address;
+        public TextView cafe_rating;
+        public TextView cafe_open_or_close;
 
 
 
@@ -78,6 +95,10 @@ public class FirstPageCafeAdapter extends RecyclerView.Adapter<FirstPageCafeAdap
             list_item_title = (TextView)itemView.findViewById(R.id.cafe_title);
             first_page_cafe_result_list_item_img = (ImageView)itemView.findViewById(R.id.cafe_img);
             cafe_id = (TextView)itemView.findViewById(R.id.cafe_id);
+            cafe_key_cuisine = (TextView)itemView.findViewById(R.id.cafe_key_cuisine) ;
+            cafe_address = (TextView)itemView.findViewById(R.id.cafe_address) ;
+            cafe_rating = (TextView)itemView.findViewById(R.id.cafe_rating) ;
+            cafe_open_or_close = (TextView)itemView.findViewById(R.id.cafe_open_or_close) ;
         }
 
 

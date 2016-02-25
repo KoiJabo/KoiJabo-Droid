@@ -23,7 +23,7 @@
             android:id="@+id/restaurant_img"
             android:layout_width="140dp"
             android:layout_height="100dp"
-            android:src="@drawable/sample" />
+            />
 
         <TextView
             android:id="@+id/restaurant_title"

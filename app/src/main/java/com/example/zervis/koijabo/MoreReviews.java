@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.zervis.koijabo.adapters.MoreReviewAdapter;
 import com.example.zervis.koijabo.pojo.Review;
@@ -36,6 +37,12 @@ public class MoreReviews extends Activity {
 
         Intent intent = getIntent();
         String id =  intent.getExtras().getString("id");
+        String name = intent.getExtras().getString("name");
+
+        TextView titleTextView = (TextView)findViewById(R.id.reviews_title);
+        titleTextView.setText(name + " User Reviews");
+
+
 
         APIInterface service = RestClient.getClient();
         Call<List<Review>> call = service.getReviews(id);
